@@ -10,7 +10,7 @@ describe('Matchstick', function() {
     it('should throw an error for an unrecognized mode', function() {
     	(function(){
 			matchstick('pattern', 'made-up-mode');
-		}).should.throw("[Matchstick] The 'mode' property must be one of static, wildcard, regex");
+		}).should.throw("[Matchstick] The 'mode' property must be one of static, wildcard, regexp");
 	});
 
     it('should throw an error for a non-string pattern value', function() {
