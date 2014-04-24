@@ -1,0 +1,28 @@
+{
+  "name": "matchstick",
+  "version": "0.1.0",
+  "description": "A utility to turn string patterns into regular expressions.",
+  "main": "matchstick.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/edj-boston/matchstick.git"
+  },
+  "keywords": [
+    "regular",
+    "expression",
+    "pattern",
+    "match"
+  ],
+  "author": "Eric Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edj-boston/matchstick/issues"
+  },
+  "homepage": "https://github.com/edj-boston/matchstick",
+  "devDependencies": {
+    "should": "^3.3.1"
+  }
+}
