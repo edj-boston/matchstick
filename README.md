@@ -62,7 +62,7 @@ Examples
 All patterns result in a regexp property which you can access directly.
 
 	matchstick('^\/path\/$', 'regexp', 'ig').regexp;
-	Returns /^/path/$/gi
+	// Returns /^/path/$/gi
 
 
 ### Static mode
