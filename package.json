@@ -14,7 +14,8 @@
     "regular",
     "expression",
     "pattern",
-    "match"
+    "match",
+    "regexp"
   ],
   "author": "Eric Johnson",
   "license": "MIT",
