@@ -8,7 +8,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	var validModes = [
 		'static',   // Static match with or without modifiers
 		'wildcard', // Asterisks match any character
-		'regex'     // Convert into a regex
+		'regexp'     // Convert into a regexp
 	];
 	if( validModes.indexOf(mode) < 0 ) throwErr("The 'mode' property must be one of " + validModes.join(', ') );
 
@@ -33,19 +33,19 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	switch( mode ) {
 		case 'static':
 			pattern = escapeRegExp(pattern);
-			this.regex = RegExp('^' + pattern + '$', modifiers);
+			this.regexp = RegExp('^' + pattern + '$', modifiers);
 			break;
 		case 'wildcard':
 			pattern = escapeRegExp(pattern, false);
 			pattern = pattern.replace(/[\*]/g, "(.*)");
-			this.regex = RegExp('^' + pattern + '$', modifiers);
+			this.regexp = RegExp('^' + pattern + '$', modifiers);
 			break;
-		case 'regex':
-			this.regex = RegExp(pattern, modifiers);
+		case 'regexp':
+			this.regexp = RegExp(pattern, modifiers);
 			break;
 	}
 
-	// Helper function to escape a regex string
+	// Helper function to escape a regexp string
 	function escapeRegExp(str, asterisks) {
 		var regexp = (asterisks) ? /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g : /[\-\[\]\/\{\}\(\)\+\?\.\\\^\$\|]/g;
 		return str.replace(regexp, "\\$&");
@@ -60,9 +60,9 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	return this;
 };
 
-// Public method to test the regex
+// Public method to test the regexp
 Matchstick.prototype.test = function( str ) {
-	return this.regex.test(str);
+	return this.regexp.test(str);
 };
 
 

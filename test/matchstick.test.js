@@ -23,10 +23,10 @@ describe('Matchstick.test()', function() {
 
 	});
 
-	describe('regex', function() {
+	describe('regexp', function() {
 
-	    it("should return true because '^\/path\/$' matches '/path/' as a regex match", function() {
-	    	assert.equal(true, matchstick('/path/*/', 'regex').test('/path/'));
+	    it("should return true because '^\/path\/$' matches '/path/' as a regexp match", function() {
+	    	assert.equal(true, matchstick('^\/path\/$', 'regexp').test('/path/'));
 		});
 
 	});
