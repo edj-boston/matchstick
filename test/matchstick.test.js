@@ -7,14 +7,6 @@ var assert = require('assert'),
 // Test the Redirect constructor
 describe('Matchstick.test()', function() {
 
-	describe('strict', function() {
-
-	    it("should return true because '/path' matches '/path' as a strict match", function() {
-	    	assert.equal(true, matchstick('/path', 'strict').test('/path'));
-		});
-
-	});
-
 	describe('static', function() {
 
 	    it("should return true because '/path' matches '/path' as a static match", function() {

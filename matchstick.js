@@ -6,21 +6,19 @@ var Matchstick = function( pattern, mode, modifiers ) {
 
 	// Validate the mode
 	var validModes = [
-		'strict',   // Exact match
-		'static',   // Static match with modifiers
+		'static',   // Static match with or without modifiers
 		'wildcard', // Asterisks match any character
 		'regex'     // Convert into a regex
 	];
 	if( validModes.indexOf(mode) < 0 ) throwErr("The 'mode' property must be one of " + validModes.join(', ') );
 
 	// Validate the modifier string	
-	var validModifiers = [
-		'i', // Case insensitive
-		'g', // Global match
-		'm'  // Multiline matching
-	];
-	if( mode == 'strict' && modifiers != null) throwErr("Modifiers cannot be used for an exact match");
 	if( modifiers ) {
+		var validModifiers = [
+			'i', // Case insensitive
+			'g', // Global match
+			'm'  // Multiline matching
+		];
 		for(i in modifiers.split('')) {
 			var mod = modifiers[i];
 			if( validModifiers.indexOf(mod) >= 0 ) {
@@ -33,10 +31,6 @@ var Matchstick = function( pattern, mode, modifiers ) {
 
 	// Process the pattern according to the mode
 	switch( mode ) {
-		case 'strict':
-			pattern = escapeRegExp(pattern);
-			this.regex = RegExp('^' + pattern + '$');
-			break;
 		case 'static':
 			pattern = escapeRegExp(pattern);
 			this.regex = RegExp('^' + pattern + '$', modifiers);

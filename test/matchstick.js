@@ -10,19 +10,13 @@ describe('Matchstick', function() {
     it('should throw an error for an unrecognized mode', function() {
     	(function(){
 			matchstick('pattern', 'made-up-mode');
-		}).should.throw("[Matchstick] The 'mode' property must be one of strict, static, wildcard, regex");
+		}).should.throw("[Matchstick] The 'mode' property must be one of static, wildcard, regex");
 	});
 
     it('should throw an error for a non-string pattern value', function() {
     	(function(){
 			matchstick([], 'strict');
 		}).should.throw("[Matchstick] The 'pattern' property must be a string");
-	});
-
-    it('should throw an error for passing modifiers in strict mode', function() {
-    	(function(){
-			matchstick('pattern', 'strict', 'x');
-		}).should.throw("[Matchstick] Modifiers cannot be used for an exact match");
 	});
 
     it('should throw an error for an invalid modifier character', function() {
