@@ -1,18 +1,18 @@
 // Cosntructor
 var Matchstick = function( pattern, mode, modifiers ) {
 
-	// Validate the pattern
-	if( typeof pattern != 'string' ) throwErr("The 'pattern' property must be a string");
+	/* *
+	 * Validation
+	 */
 
-	// Validate the mode
-	var validModes = [
-		'static',   // Static match with or without modifiers
-		'wildcard', // Asterisks match any character
-		'regexp'     // Convert into a regexp
-	];
-	if( validModes.indexOf(mode) < 0 ) throwErr("The 'mode' property must be one of " + validModes.join(', ') );
+	// Validate the 'pattern' argument
+	if( typeof pattern != 'string' ) throw new Error("[Matchstick] The 'pattern' property must be a string");
 
-	// Validate the modifier string	
+	// Validate the 'mode' argument
+	var validModes = [ 'strict', 'static', 'wildcard', 'template', 'colon', 'regexp' ];
+	if( validModes.indexOf(mode) < 0 ) throw new Error("[Matchstick] The 'mode' property must be one of " + validModes.join(', ') );
+
+	// Validate the 'modifiers' argument
 	if( modifiers ) {
 		var validModifiers = [
 			'i', // Case insensitive
@@ -24,26 +24,55 @@ var Matchstick = function( pattern, mode, modifiers ) {
 			if( validModifiers.indexOf(mod) >= 0 ) {
 				validModifiers.splice(validModifiers.indexOf(mod), 1);
 			} else {
-				throwErr("Invalid modifier character '" + mod + "'");
+				throw new Error("[Matchstick] Invalid modifier character '" + mod + "'");
 			}
 		}
 	}
 
-	// Process the pattern according to the mode
+
+	/* *
+	 * Dynamically build the 'regex' property
+	 */
+
+	// Different behaviors for each mode
 	switch( mode ) {
-		case 'static':
+
+		case 'strict': // Exact match
 			pattern = escapeRegExp(pattern);
-			this.regexp = RegExp('^' + pattern + '$', modifiers);
+			this.regexp = new RegExp('^' + pattern + '$', modifiers);
 			break;
-		case 'wildcard':
+
+		case 'static': // Static match with an optional trailing slash
+			pattern = escapeRegExp(pattern);
+			this.regexp = new RegExp('^' + pattern + '(/?)$', modifiers);
+			break;
+
+		case 'wildcard': // The '*' character matches any character(s)
 			pattern = escapeRegExp(pattern, false);
 			pattern = pattern.replace(/[\*]/g, "(.*)");
-			this.regexp = RegExp('^' + pattern + '$', modifiers);
+			this.regexp = new RegExp('^' + pattern + '$', modifiers);
 			break;
-		case 'regexp':
-			this.regexp = RegExp(pattern, modifiers);
+
+		case 'template': // A '{token}' string matches any character(s)
+			pattern = escapeRegExp(pattern);
+			this.regexp = new RegExp('^' + pattern + '$', modifiers);
+			this.tokens = pattern.match(new RegExp('({[^/.]*})', 'gi'));
+			for(i in arr) arr[i] = arr[i].substring(1, arr[i].length-1); // Remove leading/trailing curly brace char
 			break;
+
+		case 'colon': // A ':colon' string matches any character(s)
+			pattern = escapeRegExp(pattern);
+			this.regexp = new RegExp('^' + pattern + '$', modifiers);
+			this.tokens = pattern.match(new RegExp('(:[^/.]*)', 'gi'));
+			for(i in arr) arr[i] = arr[i].substring(1, arr[i].length); // Remove leading colon char
+			break;
+
+		case 'regexp': // Convert directly into a native RegExp object
+			this.regexp = new RegExp(pattern, modifiers);
+			break;
+
 	}
+
 
 	// Helper function to escape a regexp string
 	function escapeRegExp(str, asterisks) {
@@ -51,20 +80,23 @@ var Matchstick = function( pattern, mode, modifiers ) {
 		return str.replace(regexp, "\\$&");
 	}
 
-	// Helper function to throw a labeled error
-	function throwErr( message ) {
-		throw new Error("[Matchstick] " + message);
-	}
 
 	// Return the object for chaining
 	return this;
 };
 
-// Public method to test the regexp
+// Public method to test the regexp and return true or false
 Matchstick.prototype.test = function( str ) {
 	return this.regexp.test(str);
 };
 
+// Public method to perform string replacement
+Matchstick.prototype.replace = function( str, obj ) {
+	for(token in this.tokens) {
+		str.replace(token)
+	}
+	return ;
+}
 
 // Export the constructor
 module.exports = function( pattern, mode, modifiers ) {
