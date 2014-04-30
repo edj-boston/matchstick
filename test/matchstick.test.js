@@ -7,60 +7,54 @@ var assert = require('assert'),
 // Test the Redirect constructor
 describe('Matchstick.test()', function() {
 
-	describe('strict', function() {
+	/* *
+	 * Strict
+	 */
 
-	    it("should return false because 'path' matches '/path/path' globally", function() {
-	    	assert.equal(false, matchstick('/path', 'strict').test('/path/'));
-		});
-
+	 // Vanilla
+	it("should return false because '/path' strictly matches '/path'", function() {
+		assert.equal(false, matchstick('/path', 'strict').test('/path/'));
 	});
 
-	describe('static', function() {
+	/* *
+	 * Static
+	 */
 
-	    it("should return true because '/path' matches '/path' as a static match", function() {
-	    	assert.equal(true, matchstick('/path', 'static').test('/path'));
-		});
-
+	// Vanilla
+	it("should return true because '/path' statically matches '/path/'", function() {
+		assert.equal(true, matchstick('/path', 'static').test('/path/'));
 	});
 
-	describe('wildcard', function() {
-	    it("should return true because '/path/*/' matches '/path/something/' as a wildcard match", function() {
-	    	assert.equal(true, matchstick('/path/*/', 'wildcard', 'i').test('/path/something/'));
-		});
-
+	// Case-insensitive
+	it("should return true because '/path' matches '/PATH/' as a case-insensitive static match", function() {
+		assert.equal(true, matchstick('/path', 'static', 'i').test('/PATH'));
 	});
 
-	describe('template', function() {
-		var pattern = '/project/{pid}/task/{tid}';
-		var path = '/project/123/task/abc';
-	    it("should return true because '" + pattern + "' matches '" + path + "' as a template match", function() {
-	    	assert.equal(true, matchstick(pattern, 'template').test(path));
-		});
+	/* *
+	 * Wildcard
+	 */
 
+	// Vanilla
+	it("should return true because the wildcard pattern '/path/*/' matches '/path/something/'", function() {
+		assert.equal(true, matchstick('/path/*/', 'wildcard').test('/path/something/'));
 	});
 
-	describe('colon', function() {
+	/* *
+	 * Template
+	 */
 
-	    it("should return true because '/path/*/' matches '/path/something/' as a wildcard match", function() {
-	    	assert.equal(true, matchstick('/path/*/', 'wildcard', 'i').test('/path/something/'));
-		});
-
+	// Vanilla
+	it("should return true because '/project/{pid}/task/{tid}' matches '/project/123/task/abc' as a template match", function() {
+		assert.equal(true, matchstick('/project/{pid}/task/{tid}', 'template').test('/project/123/task/abc'));
 	});
 
-	describe('regexp', function() {
+	/* *
+	 * RegExp
+	 */
 
-	    it("should return true because '^\/path\/$' matches '/path/' as a regexp match", function() {
-	    	assert.equal(true, matchstick('^\/path\/$', 'regexp').test('/path/'));
-		});
-
-	});
-
-	describe('case insensitivity', function() {
-
-	    it("should return true because '/path' matches '/PATH' as a case-insensitive static match", function() {
-	    	assert.equal(true, matchstick('/path', 'static', 'i').test('/PATH'));
-		});
-
+	// Vanilla
+	it("should return true because '^\/path\/$' matches '/path/' as a regexp match", function() {
+		assert.equal(true, matchstick('^\/path\/$', 'regexp').test('/path/'));
 	});
 
 });
