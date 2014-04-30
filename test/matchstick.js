@@ -42,7 +42,7 @@ describe('Matchstick', function() {
 
 	// Strict
 	it("should return a regexp equivalent to '^\/path$' for the pattern string '/path'", function() {
-		assert.strictEqual(matchstick('/path', 'strict').regexp.toString(), new RegExp('^\\/path$').toString());
+		assert.equal(matchstick('/path', 'strict').regexp.toString(), new RegExp('^\\/path$').toString());
 	});
 
 	// Static (optional trailing slash)
