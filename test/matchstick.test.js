@@ -11,7 +11,7 @@ describe('Matchstick.test()', function() {
 	 * Strict
 	 */
 
-	 // Vanilla
+	// Vanilla
 	it("should return false because '/path' strictly matches '/path'", function() {
 		assert.equal(false, matchstick('/path', 'strict').test('/path/'));
 	});
