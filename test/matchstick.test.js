@@ -24,6 +24,22 @@ describe('Matchstick.test()', function() {
 	});
 
 	describe('wildcard', function() {
+	    it("should return true because '/path/*/' matches '/path/something/' as a wildcard match", function() {
+	    	assert.equal(true, matchstick('/path/*/', 'wildcard', 'i').test('/path/something/'));
+		});
+
+	});
+
+	describe('template', function() {
+		var pattern = '/project/{pid}/task/{tid}';
+		var path = '/project/123/task/abc';
+	    it("should return true because '" + pattern + "' matches '" + path + "' as a template match", function() {
+	    	assert.equal(true, matchstick(pattern, 'template').test(path));
+		});
+
+	});
+
+	describe('colon', function() {
 
 	    it("should return true because '/path/*/' matches '/path/something/' as a wildcard match", function() {
 	    	assert.equal(true, matchstick('/path/*/', 'wildcard', 'i').test('/path/something/'));
