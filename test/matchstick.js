@@ -55,4 +55,8 @@ describe('Matchstick', function() {
 		assert.equal(matchstick('/path/*/', 'wildcard').regexp.toString(), new RegExp('^\\/path\\/(.*)\\/$').toString());
 	});
 
+	// Template
+	it("should return a regexp equivalent to '^\/path\/(.*)$' for the wildcard pattern '/path/{id}'", function() {
+		assert.equal(matchstick('/path/{id}', 'template').regexp.toString(), new RegExp('^\\/path\\/(.*)$').toString());
+	});
 });
