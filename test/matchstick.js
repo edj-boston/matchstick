@@ -35,18 +35,24 @@ describe('Matchstick', function() {
 		}).should.throw("[Matchstick] Invalid modifier character 'g'");
 	});
 
+
 	/* *
 	 * RegExp property
 	 */
 
 	// Strict
 	it("should return a regexp equivalent to '^\/path$' for the pattern string '/path'", function() {
-		assert.equal(new RegExp('^\\/path$').toString(), matchstick('/path', 'strict').regexp.toString());
+		assert.strictEqual(matchstick('/path', 'strict').regexp.toString(), new RegExp('^\\/path$').toString());
 	});
 
 	// Static (optional trailing slash)
 	it("should return a regexp equivalent to '^\/path(/?)$' for the pattern string '/path'", function() {
-		assert.equal(new RegExp('^\\/path(\/?)$').toString(), matchstick('/path', 'static').regexp.toString());
+		assert.equal(matchstick('/path', 'static').regexp.toString(), new RegExp('^\\/path(\/?)$').toString());
+	});
+
+	// Wildcard
+	it("should return a regexp equivalent to '^\/path\/(.*)\/$' for the wildcard pattern '/path/*/'", function() {
+		assert.equal(matchstick('/path/*/', 'wildcard').regexp.toString(), new RegExp('^\\/path\\/(.*)\\/$').toString());
 	});
 
 });
