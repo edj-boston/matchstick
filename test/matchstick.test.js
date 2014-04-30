@@ -17,7 +17,7 @@ describe('Matchstick.test()', function() {
 	});
 
 	/* *
-	 * Static
+	 * Static (optional trailing slash)
 	 */
 
 	// Vanilla
