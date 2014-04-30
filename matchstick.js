@@ -69,9 +69,14 @@ var Matchstick = function( pattern, mode, modifiers ) {
 			break;
 
 		case 'colon': // A ':colon' string matches any character(s)
-			this.regexp = new RegExp('^' + pattern + '$', modifiers);
-			this.tokens = pattern.match(new RegExp('(:[^/.]*)', 'gi'));
-			for(i in arr) arr[i] = arr[i].substring(1, arr[i].length); // Remove leading colon char
+			var buff = escapeRegExp(pattern, false);
+			var arr = pattern.match(new RegExp('(:[^/.]*)', 'gi'));
+			for(i in arr) {
+				var token = arr[i].substring(1, arr[i].length); // Remove leading/trailing curly brace char
+				this.tokens.push(token);
+				buff = buff.replace(new RegExp(':' + token, 'g'), '(.*)'); // Replace tokens with catch-alls
+			}
+			this.regexp = new RegExp('^' + buff + '$', modifiers);
 			break;
 
 		case 'regexp': // Convert directly into a native RegExp object

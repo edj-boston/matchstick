@@ -59,4 +59,10 @@ describe('Matchstick', function() {
 	it("should return a regexp equivalent to '^\/path\/(.*)$' for the template pattern '/path/{id}'", function() {
 		assert.equal(matchstick('/path/{id}', 'template').regexp.toString(), new RegExp('^\\/path\\/(.*)$').toString());
 	});
+
+	// Colon
+	it("should return a regexp equivalent to '^\/path\/(.*)$' for the template pattern '/path/:id'", function() {
+		assert.equal(matchstick('/path/:id', 'colon').regexp.toString(), new RegExp('^\\/path\\/(.*)$').toString());
+	});
+
 });
