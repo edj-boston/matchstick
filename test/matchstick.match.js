@@ -4,8 +4,8 @@ var assert = require('assert'),
 	matchstick = require('../matchstick.js');
 
 
-// Test the test() method
-describe('Matchstick.test(path)', function() {
+// Test the match() method
+describe('matchstick.match(str)', function() {
 
 	/* *
 	 * Strict
@@ -13,7 +13,7 @@ describe('Matchstick.test(path)', function() {
 
 	// Vanilla
 	it("should return false because '/path' strictly matches '/path'", function() {
-		assert.equal(matchstick('/path', 'strict').test('/path/'), false);
+		assert.equal(matchstick('/path', 'strict').match('/path/'), false);
 	});
 
 	/* *
@@ -22,12 +22,12 @@ describe('Matchstick.test(path)', function() {
 
 	// Vanilla
 	it("should return true because '/path' statically matches '/path/'", function() {
-		assert.equal(matchstick('/path', 'static').test('/path/'), true);
+		assert.equal(matchstick('/path', 'static').match('/path/'), true);
 	});
 
 	// Case-insensitive
 	it("should return true because '/path' matches '/PATH/' as a case-insensitive static match", function() {
-		assert.equal(matchstick('/path', 'static', 'i').test('/PATH'), true);
+		assert.equal(matchstick('/path', 'static', 'i').match('/PATH'), true);
 	});
 
 	/* *
@@ -36,7 +36,7 @@ describe('Matchstick.test(path)', function() {
 
 	// Vanilla
 	it("should return true because the wildcard pattern '/path/*/' matches '/path/something/'", function() {
-		assert.equal(matchstick('/path/*/', 'wildcard').test('/path/something/'), true);
+		assert.equal(matchstick('/path/*/', 'wildcard').match('/path/something/'), true);
 	});
 
 	/* *
@@ -45,7 +45,7 @@ describe('Matchstick.test(path)', function() {
 
 	// Vanilla
 	it("should return true because '/project/{pid}/task/{tid}' matches '/project/123/task/abc' as a template match", function() {
-		assert.equal(matchstick('/project/{pid}/task/{tid}', 'template').test('/project/123/task/abc'), true);
+		assert.equal(matchstick('/project/{pid}/task/{tid}', 'template').match('/project/123/task/abc'), true);
 	});
 
 	/* *
@@ -54,7 +54,7 @@ describe('Matchstick.test(path)', function() {
 
 	// Vanilla
 	it("should return true because '^\/path\/$' matches '/path/' as a regexp match", function() {
-		assert.equal(matchstick('^\/path\/$', 'regexp').test('/path/'), true);
+		assert.equal(matchstick('^\/path\/$', 'regexp').match('/path/'), true);
 	});
 
 });

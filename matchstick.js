@@ -111,13 +111,13 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	return this;
 };
 
-// Public method to test the regexp and return true or false
-Matchstick.prototype.test = function( str ) {
+// Public method to test the regexp against a string and return true/false
+Matchstick.prototype.match = function( str ) {
 	return this.regexp.test(str);
 };
 
 // Public method to perform string replacement
-Matchstick.prototype.replace = function( obj ) {
+Matchstick.prototype.stick = function( obj ) {
 	var str = this.pattern;
 
 	// Handle the two token modes differently

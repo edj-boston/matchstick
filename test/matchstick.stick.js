@@ -4,8 +4,8 @@ var assert = require('assert'),
 	matchstick = require('../matchstick.js');
 
 
-// Test the replace() method
-describe('Matchstick.replace(obj)', function() {
+// Test the stick() method
+describe('matchstick.stick(obj)', function() {
 
 	/* *
 	 * Template
@@ -18,7 +18,7 @@ describe('Matchstick.replace(obj)', function() {
 			pid : '123',
 			tid : 'abc'
 		};
-		assert.equal(ms.replace(obj), '/project/123/task/abc');
+		assert.equal(ms.stick(obj), '/project/123/task/abc');
 	});
 
 	// Unused tokens
@@ -28,7 +28,7 @@ describe('Matchstick.replace(obj)', function() {
 			pid : '123',
 			tid : 'abc'
 		};
-		assert.equal(ms.replace(obj), '/project/123/task/abc/action/');
+		assert.equal(ms.stick(obj), '/project/123/task/abc/action/');
 	});
 
 	/* *
@@ -42,7 +42,7 @@ describe('Matchstick.replace(obj)', function() {
 			pid : '123',
 			tid : 'abc'
 		};
-		assert.equal(ms.replace(obj), '/project/123/task/abc');
+		assert.equal(ms.stick(obj), '/project/123/task/abc');
 	});
 
 	// Unused tokens
@@ -52,7 +52,7 @@ describe('Matchstick.replace(obj)', function() {
 			pid : '123',
 			tid : 'abc'
 		};
-		assert.equal(ms.replace(obj), '/project/123/task/abc/action/');
+		assert.equal(ms.stick(obj), '/project/123/task/abc/action/');
 	});
 
 });

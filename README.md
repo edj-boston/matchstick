@@ -1,6 +1,6 @@
 # Matchstick [![Build Status](https://travis-ci.org/edj-boston/matchstick.svg?branch=master)](https://travis-ci.org/edj-boston/matchstick)
 
-A utility for turning string patterns into a regular expressions. Also tokenizes a string and can perform replacement. Useful for matching URLs to routes.
+A small library for conveting various string patterns into regular expressions. It can also tokenize a string and can perform replacement from a data object. It's especially useful for route handling.
 
 
 Installation
@@ -14,15 +14,14 @@ Usage
 
 Require matchstick at the top of your script.
 
-	var matchstick = require("matchstick");
-
+	var matchstick = require('matchstick');
 
 Matchstick is a constructor that returns a fresh instance so you don't need the _new_ keyword. It takes three arguments:	
 
 * __pattern__ is a string representing a search
 * __mode__ is a string that tells matchstick how to interpret the pattern
 	* _strict:_ Exact match
-	* _static:_ Exact match with optional trailing slash
+	* _static:_ Exact match with optional trailing slash( for URLs)
 	* _wildcard:_ Asterisks match any character(s) _e.g._ `/path/*/`
 	* _template:_ Curly brace tokens match any character(s) _e.g._ `/path/{token}/`
 	* _colon:_ Ruby-style tokens with leading colons match any character(s) _e.g._ `/path/:token/`
@@ -39,21 +38,21 @@ Matchstick is a constructor that returns a fresh instance so you don't need the 
 Returns:
 
 	{
-		pattern : '/project/{projectid}/task/{taskid}',
-		mode : 'template',
-		tokens : [
+		pattern  : '/project/{projectid}/task/{taskid}',
+		mode     : 'template',
+		tokens   : [
 			'projectid',
 			'taskid'
 		],
-		regexp : /^\/project\/(.*)\/task\/(.*)$/
-		replace : function() {}
-		test : function() {}
+		regexp  : /^\/project\/(.*)\/task\/(.*)$/,
+		match   : function() {},
+		stick : function() {}
 	}
 
-Set it to a variable and use the test method to return true or false
+Set it to a variable and use the match method to return true or false
 
 	var ms = matchstick('/path', 'static');
-	ms.test('/path/');
+	ms.match('/path/');
 
 Returns: `true`
 
@@ -61,7 +60,7 @@ Returns: `true`
 ...or evaluate it directly.
 
 	var path = '/path/';
-	if( matchstick('/path', 'static', 'i').test(str) ) {
+	if( matchstick('/path', 'static', 'i').match(str) ) {
 		// Do something
 	}
 
@@ -73,36 +72,36 @@ Examples
 
 All patterns result in a regexp property which you can access directly.
 
-	matchstick('^\/path\/$', 'regexp', 'ig').regexp;
+	matchstick('^\/path\/$', 'regexp', 'g').regexp;
 
 Returns: `/^/path/$/gi`
 
-### test() method
+### match() method
 
 #### Static mode
 
-	matchstick('/path/', 'static').test('/PATH/');
+	matchstick('/path/', 'static').match'('/PATH/');
 
 Returns: `true`
 
 #### Wildcard mode
 
-	matchstick('/path/*/', 'wildcard').test('/path/something/');
+	matchstick('/path/*/', 'wildcard').match('/path/something/');
 
 Returns: `true`
 
 #### Regexp mode
 
-	matchstick('^\/path\/$', 'regexp').test('/path/');
+	matchstick('^\/path\/$', 'regexp').match('/path/');
 
 Returns: `true`
 
-### replace() method
+### stick() method
 
 #### template mode
 
 	var ms = matchstick('/project/{projectid}/task/{taskid}', 'pattern');
-	ms.replace({
+	ms.stick({
 		projectid : '123', 
 		taskid : 'abc'
 	});
@@ -112,7 +111,7 @@ Returns: `/project/123/task/abc`
 #### colon mode
 
 	var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'pattern');
-	ms.replace({
+	ms.stick({
 		projectid : '123', 
 		taskid : 'abc'
 	});

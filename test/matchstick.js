@@ -5,7 +5,7 @@ var assert = require('assert'),
 
 
 // Test the Redirect constructor
-describe('Matchstick(pattern, mode, modifiers)', function() {
+describe('matchstick(pattern, mode, modifiers)', function() {
 
 	/* *
 	 * Validation
