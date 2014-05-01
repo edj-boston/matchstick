@@ -70,4 +70,15 @@ describe('Matchstick', function() {
 		assert.equal(matchstick('/path', 'regexp').regexp.toString(), new RegExp('/path').toString());
 	});
 
+
+	/* *
+	 * Token property
+	 */
+
+	// Template
+	it("should return a token array [ 'pid', 'tid' ] for the template pattern '/project/{pid}/task/{tid}'", function() {
+		assert.deepEqual(matchstick('/project/{pid}/task/{tid}', 'template').tokens, ['pid', 'tid']);
+	});
+
+
 });
