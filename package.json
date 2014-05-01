@@ -1,7 +1,7 @@
 {
   "name": "matchstick",
-  "version": "0.1.0",
-  "description": "A utility to turn string patterns into regular expressions.",
+  "version": "0.5.0",
+  "description": "A utility to turn string patterns into regular expressions and performing replacement.",
   "main": "matchstick.js",
   "scripts": {
     "test": "mocha"
@@ -15,6 +15,9 @@
     "expression",
     "pattern",
     "match",
+    "replace",
+    "route",
+    "url",
     "regexp"
   ],
   "author": "Eric Johnson",
