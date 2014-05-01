@@ -1,5 +1,4 @@
-Matchstick
-==========
+# Matchstick [![Build Status](https://travis-ci.org/edj-boston/matchstick.svg?branch=master)](https://travis-ci.org/edj-boston/matchstick)
 
 A utility for turning string patterns into a regular expressions. Also tokenizes a string and can perform replacement. Useful for matching URLs to routes.
 
