@@ -1,10 +1,12 @@
 // Cosntructor
 var Matchstick = function( pattern, mode, modifiers ) {
 
-	this.pattern = '';
-	this.pattern = '';
-	this.tokens = [];
-	this.regexp = new RegExp();
+	// Defaults
+	this.pattern   = ''; // Original pattern passed as argument
+	this.mode      = ''; // Mode string must be one of validModes array below
+	this.modifiers = ''; // Modifier string passed as argument
+	this.tokens    = null; // Tokens array for 'template' and 'colon' modes
+	this.regexp    = new RegExp(); // The calculated regex object
 
 	/* *
 	 * Validation
@@ -40,6 +42,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 				throw new Error("[Matchstick] Invalid modifier character '" + mod + "'");
 			}
 		}
+		this.modifiers = modifiers;
 	}
 
 
@@ -67,6 +70,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 			break;
 
 		case 'template': // A '{token}' string matches any character(s)
+			this.tokens = [];
 			var buff = escapeRegExp(pattern, false);
 			var arr = pattern.match(new RegExp('(\\{[^/.]*\\})', 'gi'));
 			for(i in arr) {
@@ -78,6 +82,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 			break;
 
 		case 'colon': // A ':colon' string matches any character(s)
+			this.tokens = [];
 			var buff = escapeRegExp(pattern, false);
 			var arr = pattern.match(new RegExp(':([^/.]*)', 'gi'));
 			for(i in arr) {
