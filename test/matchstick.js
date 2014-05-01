@@ -41,12 +41,12 @@ describe('Matchstick', function() {
 	 */
 
 	// Strict
-	it("should return a regexp equivalent to '^\/path$' for the pattern string '/path'", function() {
+	it("should return a regexp equivalent to '^\/path$' for the strict pattern string '/path'", function() {
 		assert.equal(matchstick('/path', 'strict').regexp.toString(), new RegExp('^\\/path$').toString());
 	});
 
 	// Static (optional trailing slash)
-	it("should return a regexp equivalent to '^\/path(/?)$' for the pattern string '/path'", function() {
+	it("should return a regexp equivalent to '^\/path(/?)$' for the static pattern string '/path'", function() {
 		assert.equal(matchstick('/path', 'static').regexp.toString(), new RegExp('^\\/path(\/?)$').toString());
 	});
 
@@ -61,8 +61,13 @@ describe('Matchstick', function() {
 	});
 
 	// Colon
-	it("should return a regexp equivalent to '^\/path\/(.*)$' for the template pattern '/path/:id'", function() {
+	it("should return a regexp equivalent to '^\/path\/(.*)$' for the colon pattern '/path/:id'", function() {
 		assert.equal(matchstick('/path/:id', 'colon').regexp.toString(), new RegExp('^\\/path\\/(.*)$').toString());
+	});
+
+	// RegExp
+	it("should return a regexp equivalent to '/path' for the regex string '/path'", function() {
+		assert.equal(matchstick('/path', 'regexp').regexp.toString(), new RegExp('/path').toString());
 	});
 
 });
