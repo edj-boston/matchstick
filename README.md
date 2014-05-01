@@ -24,7 +24,7 @@ Matchstick is a constructor that returns a fresh instance so you don't need the 
 	* _static:_ Exact match with optional trailing slash( for URLs)
 	* _wildcard:_ Asterisks match any character(s) _e.g._ `/path/*/`
 	* _template:_ Curly brace tokens match any character(s) _e.g._ `/path/{token}/`
-	* _colon:_ Ruby-style tokens with leading colons match any character(s) _e.g._ `/path/:token/`
+	* _symbolic:_ Ruby-style symbols with leading colons match any character(s) _e.g._ `/path/:token/`
 	* _regexp:_ Convert into a true RegExp Object _e.g._ `^\/path\/$`
 * __modifiers__ is a string containing one (or none) of any of the following characters
 	* _i:_ Case insensitive
@@ -98,7 +98,7 @@ Returns: `true`
 
 ### stick() method
 
-#### template mode
+#### Template mode
 
 	var ms = matchstick('/project/{projectid}/task/{taskid}', 'pattern');
 	ms.stick({
@@ -108,7 +108,7 @@ Returns: `true`
 
 Returns: `/project/123/task/abc`
 
-#### colon mode
+#### Symbolic mode
 
 	var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'pattern');
 	ms.stick({

@@ -14,7 +14,7 @@ describe('matchstick(pattern, mode, modifiers)', function() {
 	it('should throw an error for an unrecognized mode', function() {
 		(function(){
 			matchstick('pattern', 'made-up-mode');
-		}).should.throw("[Matchstick] The 'mode' property must be one of strict, static, wildcard, template, colon, regexp");
+		}).should.throw("[Matchstick] The 'mode' property must be one of strict, static, wildcard, template, symbolic, regexp");
 	});
 
 	it('should throw an error for a non-string pattern value', function() {
@@ -61,8 +61,8 @@ describe('matchstick(pattern, mode, modifiers)', function() {
 	});
 
 	// Colon
-	it("should return a regexp equivalent to '^\/path\/(.*)$' for the colon pattern '/path/:id'", function() {
-		assert.equal(matchstick('/path/:id', 'colon').regexp.toString(), new RegExp('^\\/path\\/(.*)$').toString());
+	it("should return a regexp equivalent to '^\/path\/(.*)$' for the symbolic pattern '/path/:id'", function() {
+		assert.equal(matchstick('/path/:id', 'symbolic').regexp.toString(), new RegExp('^\\/path\\/(.*)$').toString());
 	});
 
 	// RegExp
@@ -81,8 +81,8 @@ describe('matchstick(pattern, mode, modifiers)', function() {
 	});
 
 	// Colon
-	it("should return a token array [ 'pid', 'tid' ] for the colon pattern '/project/:pid/task/:tid'", function() {
-		assert.deepEqual(matchstick('/project/:pid/task/:tid', 'colon').tokens, ['pid', 'tid']);
+	it("should return a token array [ 'pid', 'tid' ] for the symbolic pattern '/project/:pid/task/:tid'", function() {
+		assert.deepEqual(matchstick('/project/:pid/task/:tid', 'symbolic').tokens, ['pid', 'tid']);
 	});
 
 

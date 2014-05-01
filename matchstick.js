@@ -5,7 +5,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	this.pattern   = ''; // Original pattern passed as argument
 	this.mode      = ''; // Mode string must be one of validModes array below
 	this.modifiers = null; // Modifier string passed as argument for 'regexp' mode
-	this.tokens    = null; // Tokens array for 'template' and 'colon' modes
+	this.tokens    = null; // Tokens array for 'template' and 'symbolic' modes
 	this.regexp    = new RegExp(); // The calculated regex object
 
 	/* *
@@ -20,7 +20,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	}
 
 	// Validate the 'mode' argument
-	var validModes = [ 'strict', 'static', 'wildcard', 'template', 'colon', 'regexp' ];
+	var validModes = [ 'strict', 'static', 'wildcard', 'template', 'symbolic', 'regexp' ];
 	if( validModes.indexOf(mode) >= 0 ) {
 		this.mode = mode;
 	} else {
@@ -81,7 +81,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 			this.regexp = new RegExp('^' + buff + '$', modifiers);
 			break;
 
-		case 'colon': // A ':colon' string matches any character(s)
+		case 'symbolic': // A ':symbol' string matches any character(s)
 			this.tokens = [];
 			var buff = escapeRegExp(pattern, false);
 			var arr = pattern.match(new RegExp(':([^/.]*)', 'gi'));
@@ -130,7 +130,7 @@ Matchstick.prototype.stick = function( obj ) {
 				return str.replace(/{([^{.]*)}/g, '');
 			}
 			break;
-		case 'colon':
+		case 'symbolic':
 			var swap = function( str, token, val ) {
 				return str.replace(':' + token, val);
 			}
