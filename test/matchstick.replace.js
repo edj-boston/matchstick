@@ -7,7 +7,11 @@ var assert = require('assert'),
 // Test the replace() method
 describe('Matchstick.replace(obj)', function() {
 
-	// Template
+	/* *
+	 * Template
+	 */
+
+	// Simple replacement
 	it("should return '/project/123/task/abc' given the pattern '/project/{pid}/task/{tid}' and {pid:'123', tid:'abc'} data", function() {
 		var ms = matchstick('/project/{pid}/task/{tid}', 'template');
 		var obj = {
@@ -17,7 +21,21 @@ describe('Matchstick.replace(obj)', function() {
 		assert.equal(ms.replace(obj), '/project/123/task/abc');
 	});
 
-	// Colon
+	// Unused tokens
+	it("should return '/project/123/task/abc/action/' given the pattern '/project/{pid}/task/{tid}/action/{aid}' and {pid:'123', tid:'abc'} data", function() {
+		var ms = matchstick('/project/{pid}/task/{tid}/action/{aid}', 'template');
+		var obj = {
+			pid : '123',
+			tid : 'abc'
+		};
+		assert.equal(ms.replace(obj), '/project/123/task/abc/action/');
+	});
+
+	/* *
+	 * Colon
+	 */
+
+	// Simple replacement
 	it("should return '/project/123/task/abc' given the pattern '/project/:pid/task/:tid' and {pid:'123', tid:'abc'} data", function() {
 		var ms = matchstick('/project/:pid/task/:tid', 'colon');
 		var obj = {

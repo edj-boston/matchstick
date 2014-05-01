@@ -121,10 +121,16 @@ Matchstick.prototype.replace = function( obj ) {
 			var swap = function( str, token, val ) {
 				return str.replace('{' + token + '}', val);
 			}
+			var scrub = function(str) {
+				return str.replace(/{([^{.]*)}/g, '');
+			}
 			break;
 		case 'colon':
 			var swap = function( str, token, val ) {
 				return str.replace(':' + token, val);
+			}
+			var scrub = function(str) {
+				return str.replace(/(:[^/.]*)/g, '');
 			}
 			break;
 		default:
@@ -139,6 +145,9 @@ Matchstick.prototype.replace = function( obj ) {
 			str = swap(str, token, obj[token]);
 		}
 	}
+
+	// Scrub unused tokens
+	str = scrub(str);
 
 	// Return our str with values
 	return str;
