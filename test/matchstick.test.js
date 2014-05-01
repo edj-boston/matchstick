@@ -5,7 +5,7 @@ var assert = require('assert'),
 
 
 // Test the test() method
-describe('Matchstick.test()', function() {
+describe('Matchstick.test(path)', function() {
 
 	/* *
 	 * Strict
