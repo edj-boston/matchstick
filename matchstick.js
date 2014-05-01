@@ -2,6 +2,7 @@
 var Matchstick = function( pattern, mode, modifiers ) {
 
 	this.pattern = '';
+	this.pattern = '';
 	this.tokens = [];
 	this.regexp = new RegExp();
 
@@ -10,11 +11,19 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	 */
 
 	// Validate the 'pattern' argument
-	if( typeof pattern != 'string' ) throw new Error("[Matchstick] The 'pattern' property must be a string");
+	if( typeof pattern == 'string' ) {
+		this.pattern = pattern;
+	} else {
+		throw new Error("[Matchstick] The 'pattern' property must be a string");
+	}
 
 	// Validate the 'mode' argument
 	var validModes = [ 'strict', 'static', 'wildcard', 'template', 'colon', 'regexp' ];
-	if( validModes.indexOf(mode) < 0 ) throw new Error("[Matchstick] The 'mode' property must be one of " + validModes.join(', ') );
+	if( validModes.indexOf(mode) >= 0 ) {
+		this.mode = mode;
+	} else {
+		throw new Error("[Matchstick] The 'mode' property must be one of " + validModes.join(', ') );
+	}
 
 	// Validate the 'modifiers' argument
 	if( modifiers ) {
@@ -103,11 +112,36 @@ Matchstick.prototype.test = function( str ) {
 };
 
 // Public method to perform string replacement
-Matchstick.prototype.replace = function( str, obj ) {
-	for(token in this.tokens) {
-		str.replace(token)
+Matchstick.prototype.replace = function( obj ) {
+	var str = this.pattern;
+
+	// Handle the two token modes differently
+	switch( this.mode ) {
+		case 'template':
+			var swap = function( str, token, val ) {
+				return str.replace('{' + token + '}', val);
+			}
+			break;
+		case 'colon':
+			var swap = function( str, token, val ) {
+				return str.replace(':' + token, val);
+			}
+			break;
+		default:
+			throw new Error("[Matchstick] Cannot call replace method on '" + this.mode + "' type");
+			break;
 	}
-	return ;
+
+	// replace the tokens aith values
+	for(i in this.tokens) {
+		token = this.tokens[i];
+		if( obj.hasOwnProperty(token) ) {
+			str = swap(str, token, obj[token]);
+		}
+	}
+
+	// Return our str with values
+	return str;
 }
 
 // Export the constructor
