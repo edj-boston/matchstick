@@ -4,7 +4,7 @@ var assert = require('assert'),
 	matchstick = require('../matchstick.js');
 
 
-// Test the Redirect constructor
+// Test the test() method
 describe('Matchstick.test()', function() {
 
 	/* *
