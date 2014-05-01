@@ -72,12 +72,17 @@ describe('Matchstick', function() {
 
 
 	/* *
-	 * Token property
+	 * Tokens property
 	 */
 
 	// Template
 	it("should return a token array [ 'pid', 'tid' ] for the template pattern '/project/{pid}/task/{tid}'", function() {
 		assert.deepEqual(matchstick('/project/{pid}/task/{tid}', 'template').tokens, ['pid', 'tid']);
+	});
+
+	// Colon
+	it("should return a token array [ 'pid', 'tid' ] for the colon pattern '/project/:pid/task/:tid'", function() {
+		assert.deepEqual(matchstick('/project/:pid/task/:tid', 'colon').tokens, ['pid', 'tid']);
 	});
 
 
