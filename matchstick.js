@@ -72,7 +72,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 		case 'template': // A '{token}' string matches any character(s)
 			this.tokens = [];
 			var buff = escapeRegExp(pattern, false);
-			var arr = pattern.match(new RegExp('(\\{[^/.]*\\})', 'gi'));
+			var arr = pattern.match(new RegExp('({[^/.]*})', 'g'));
 			for(i in arr) {
 				var token = arr[i].substring(1, arr[i].length-1); // Remove leading/trailing curly brace char
 				this.tokens.push(token);
@@ -84,7 +84,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 		case 'symbolic': // A ':symbol' string matches any character(s)
 			this.tokens = [];
 			var buff = escapeRegExp(pattern, false);
-			var arr = pattern.match(new RegExp(':([^/.]*)', 'gi'));
+			var arr = pattern.match(new RegExp('(:[a-z0-9]*)', 'g'));
 			for(i in arr) {
 				var token = arr[i].substring(1, arr[i].length); // Remove leading/trailing curly brace char
 				this.tokens.push(token);
@@ -111,10 +111,12 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	return this;
 };
 
+
 // Public method to test the regexp against a string and return true/false
 Matchstick.prototype.match = function( str ) {
 	return this.regexp.test(str);
 };
+
 
 // Public method to perform string replacement
 Matchstick.prototype.stick = function( obj ) {
@@ -157,6 +159,7 @@ Matchstick.prototype.stick = function( obj ) {
 	// Return our str with values
 	return str;
 }
+
 
 // Export the constructor
 module.exports = function( pattern, mode, modifiers ) {

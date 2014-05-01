@@ -85,5 +85,10 @@ describe('matchstick(pattern, mode, modifiers)', function() {
 		assert.deepEqual(matchstick('/project/:pid/task/:tid', 'symbolic').tokens, ['pid', 'tid']);
 	});
 
+	// Colon
+	it("should return a token array [ 'project', 'id' ] for the symbolic pattern '/:project:id'", function() {
+		assert.deepEqual(matchstick('/:project:id', 'symbolic').tokens, ['project', 'id']);
+	});
+
 
 });

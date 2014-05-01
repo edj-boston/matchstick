@@ -1,6 +1,6 @@
 {
   "name": "matchstick",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "A small library for conveting various string patterns into regular expressions. It can also tokenize a string and can perform replacement from a data object. It's especially useful for route handling.",
   "main": "matchstick.js",
   "scripts": {

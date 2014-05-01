@@ -21,7 +21,7 @@ Matchstick is a constructor that returns a fresh instance so you don't need the 
 * __pattern__ is a string representing a search
 * __mode__ is a string that tells matchstick how to interpret the pattern
 	* _strict:_ Exact match
-	* _static:_ Exact match with optional trailing slash( for URLs)
+	* _static:_ Exact match with optional trailing slash (for URLs)
 	* _wildcard:_ Asterisks match any character(s) _e.g._ `/path/*/`
 	* _template:_ Curly brace tokens match any character(s) _e.g._ `/path/{token}/`
 	* _symbolic:_ Ruby-style symbols with leading colons match any character(s) _e.g._ `/path/:token/`
