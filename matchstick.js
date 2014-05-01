@@ -79,7 +79,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 
 		case 'colon': // A ':colon' string matches any character(s)
 			var buff = escapeRegExp(pattern, false);
-			var arr = pattern.match(new RegExp('(:[^/.]*)', 'gi'));
+			var arr = pattern.match(new RegExp(':([^/.]*)', 'gi'));
 			for(i in arr) {
 				var token = arr[i].substring(1, arr[i].length); // Remove leading/trailing curly brace char
 				this.tokens.push(token);
@@ -130,7 +130,7 @@ Matchstick.prototype.replace = function( obj ) {
 				return str.replace(':' + token, val);
 			}
 			var scrub = function(str) {
-				return str.replace(/(:[^/.]*)/g, '');
+				return str.replace(/:([^/.]*)/g, '');
 			}
 			break;
 		default:
@@ -138,7 +138,7 @@ Matchstick.prototype.replace = function( obj ) {
 			break;
 	}
 
-	// replace the tokens aith values
+	// Replace the tokens aith values
 	for(i in this.tokens) {
 		token = this.tokens[i];
 		if( obj.hasOwnProperty(token) ) {

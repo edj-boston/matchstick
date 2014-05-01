@@ -45,4 +45,14 @@ describe('Matchstick.replace(obj)', function() {
 		assert.equal(ms.replace(obj), '/project/123/task/abc');
 	});
 
+	// Unused tokens
+	it("should return '/project/123/task/abc/action/' given the pattern '/project/:pid/task/:tid/action/:aid' and {pid:'123', tid:'abc'} data", function() {
+		var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'colon');
+		var obj = {
+			pid : '123',
+			tid : 'abc'
+		};
+		assert.equal(ms.replace(obj), '/project/123/task/abc/action/');
+	});
+
 });
