@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/edj-boston/matchstick",
   "devDependencies": {
+    "mocha": "^1.4.3",
     "should": "^3.3.1"
   }
 }
