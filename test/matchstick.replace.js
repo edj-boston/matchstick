@@ -8,7 +8,7 @@ var assert = require('assert'),
 describe('Matchstick.replace()', function() {
 
 	// Template
-	it("should '/project/{pid}/task/{tid}' matches '/project/123/task/abc' as a template match", function() {
+	it("should return '/project/123/task/abc' given the pattern '/project/{pid}/task/{tid}' and {pid:'123', tid:'abc'} data", function() {
 		var ms = matchstick('/project/{pid}/task/{tid}', 'template');
 		var obj = {
 			pid : '123',
