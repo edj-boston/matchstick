@@ -4,7 +4,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	// Defaults
 	this.pattern   = ''; // Original pattern passed as argument
 	this.mode      = ''; // Mode string must be one of validModes array below
-	this.modifiers = ''; // Modifier string passed as argument
+	this.modifiers = null; // Modifier string passed as argument for 'regexp' mode
 	this.tokens    = null; // Tokens array for 'template' and 'colon' modes
 	this.regexp    = new RegExp(); // The calculated regex object
 
