@@ -1,7 +1,7 @@
 {
   "name": "matchstick",
-  "version": "0.5.4",
-  "description": "A small library for conveting various string patterns into regular expressions. It can also tokenize a string and can perform replacement from a data object. It's especially useful for route handling.",
+  "version": "0.5.5",
+  "description": "A NodeJS module that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simlple template systems.",
   "main": "matchstick.js",
   "scripts": {
     "test": "mocha"
@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/edj-boston/matchstick/issues"
   },
-  "homepage": "https://github.com/edj-boston/matchstick",
+  "homepage": "https://matchstickjs.com",
   "devDependencies": {
     "mocha": "^1.4.3",
     "should": "^3.3.1"
