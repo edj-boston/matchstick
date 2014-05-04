@@ -15,8 +15,9 @@ Usage
 Require matchstick at the top of your script.
 
 	var matchstick = require('matchstick');
+ 
 
-Matchstick is a constructor that returns a fresh instance so you don't need the `new` keyword. It takes three arguments:	
+### Arguments
 
 * __pattern__ is a string representing a search
 * __mode__ is a string that tells matchstick how to interpret the pattern
@@ -31,7 +32,10 @@ Matchstick is a constructor that returns a fresh instance so you don't need the 
 	* _g:_ Global match
 	* _m:_ Multiline matching
 
-eee
+
+### Example
+
+Matchstick is a constructor that returns a fresh instance so you don't need the `new` keyword.
 
 	> var ms = matchstick('/project/{pid}/task/{tid}', 'template');
 	> ms
