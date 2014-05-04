@@ -16,7 +16,7 @@ Require matchstick at the top of your script.
 
 	var matchstick = require('matchstick');
 
-Matchstick is a constructor that returns a fresh instance so you don't need the _new_ keyword. It takes three arguments:	
+Matchstick is a constructor that returns a fresh instance so you don't need the `new` keyword. It takes three arguments:	
 
 * __pattern__ is a string representing a search
 * __mode__ is a string that tells matchstick how to interpret the pattern
@@ -31,92 +31,124 @@ Matchstick is a constructor that returns a fresh instance so you don't need the 
 	* _g:_ Global match
 	* _m:_ Multiline matching
 
-### Example
+eee
 
-	> matchstick('/project/{projectid}/task/{taskid}', 'template');
-
-Returns:
+	> var ms = matchstick('/project/{pid}/task/{tid}', 'template');
+	> ms
 
 	{
-		pattern  : '/project/{projectid}/task/{taskid}',
+		pattern  : '/project/{pid}/task/{tid}',
 		mode     : 'template',
 		tokens   : [
-			'projectid',
-			'taskid'
+			'pid',
+			'tid'
 		],
 		regexp  : /^\/project\/(.*)\/task\/(.*)$/,
+		matches : null,
 		match   : function() {},
 		stick : function() {}
 	}
 
-Set it to a variable and use the match method to return true or false
+Set it to a variable and use the match method to return `true` or `false`
 
-	var ms = matchstick('/path', 'static');
-	ms.match('/path/');
-
-Returns: `true`
-
+	> var ms = matchstick('/path', 'static')
+	> ms.match('/path/')
+	
+	true
 
 ...or evaluate it directly.
 
-	var path = '/path/';
-	if( matchstick('/path', 'static', 'i').match(str) ) {
-		// Do something
-	}
+	> var str = '/path/';
+	> if( matchstick('/path', 'static' ).match(str) ) { 'match!' }
+	
+	'match!'
 
 
-Examples
---------
+Dynamic Properties
+------------------
 
-### Regexp property
+### Tokens
 
-All patterns result in a regexp property which you can access directly.
+Template and symbolic modes populate the `tokens` property with an array representing the token names in the other they appear in the pattern.
+	
+	> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
+	> ms.tokens
+	
+	  ['pid', 'tid']
 
-	matchstick('^\/path\/$', 'regexp', 'g').regexp;
 
-Returns: `/^/path/$/gi`
+### Matches
 
-### match() method
+The matches property will always contain the lastest results of a `match()` call.
+
+__Wildcard__ and __RegExp__ modes populate the `matches` property with an array of strings representing the order in which they are captured.
+
+	> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
+	> ms.match('/project/123/task/abc');
+	> ms.matches
+	
+	  ['123', 'abc']	
+
+__Template__ and __symbolic__ modes populate the `matches` property with an object with tokens and strings as key/value pairs.
+
+	> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
+	> ms.match('/project/123/task/abc');
+	> ms.matches
+	
+	  {pid:'123', tid:'abc'}
+
+
+### RegExp
+
+All patterns populate the `regexp` property which you can access directly if needed.
+
+	> var ms = matchstick('^\/path\/$', 'regexp', 'g')
+	> ms.regexp
+	
+	  /^/path/$/g
+
+
+Methods
+-------
+
+### match()
 
 #### Static mode
 
-	matchstick('/path/', 'static').match'('/PATH/');
-
-Returns: `true`
+	> matchstick('/path/', 'static').match'('/PATH/')
+	
+	  true
 
 #### Wildcard mode
 
-	matchstick('/path/*/', 'wildcard').match('/path/something/');
-
-Returns: `true`
+	> matchstick('/path/*/', 'wildcard').match('/path/something/')
+	
+	  true
 
 #### Regexp mode
 
-	matchstick('^\/path\/$', 'regexp').match('/path/');
+	> matchstick('^\/path\/$', 'regexp').match('/path/')
+	
+	  true
 
-Returns: `true`
 
-### stick() method
+### stick()
 
-#### Template mode
+#### Template Mode
 
-	var ms = matchstick('/project/{projectid}/task/{taskid}', 'pattern');
-	ms.stick({
-		projectid : '123', 
-		taskid : 'abc'
-	});
+	> var ms = matchstick('/project/{pid}/task/{tid}', 'pattern');
+	> ms.stick({pid:'123', tid:'abc'});
+	
+	  /project/123/task/abc
 
-Returns: `/project/123/task/abc`
+#### Symbolic Mode
 
-#### Symbolic mode
+	> var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'pattern');
+	> ms.stick({pid:'123', tid:'abc'});
+	
+	  /project/123/task/abc/action/
 
-	var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'pattern');
-	ms.stick({
-		projectid : '123', 
-		taskid : 'abc'
-	});
-
-Returns: `/project/123/task/abc/action/` (unused tokens are removed)
+Note: Unused tokens are removed
 
 
 Tests
