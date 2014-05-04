@@ -91,4 +91,42 @@ describe('matchstick(pattern, mode, modifiers)', function() {
 	});
 
 
+	/* *
+	 * Matches property
+	 */
+
+	// Wildcard
+	it("should return the match array ['123', 'abc'] for the match '/project/123/task/abc' based on the wildcard pattern '/project/*/task/*'", function() {
+		var ms = matchstick('/project/*/task/*', 'wildcard');
+		ms.match('/project/123/task/abc');
+		assert.deepEqual(ms.matches, ['123', 'abc']);
+	});
+
+	// Template
+	it("should return the match object {'pid': '123', 'tid': 'abc'} for the match '/project/123/task/abc' based on the template pattern '/project/{pid}/task/{tid}'", function() {
+		var ms = matchstick('/project/{pid}/task/{tid}', 'template');
+		ms.match('/project/123/task/abc');
+		assert.deepEqual(ms.matches, {
+			'pid' : '123',
+			'tid': 'abc'
+		});
+	});
+
+	// Symbolic
+	it("should return the match object {'pid': '123', 'tid': 'abc'} for the match '/project/123/task/abc' based on the symbolic pattern '/project/:pid/task/:tid'", function() {
+		var ms = matchstick('/project/:pid/task/:tid', 'symbolic');
+		ms.match('/project/123/task/abc');
+		assert.deepEqual(ms.matches, {
+			'pid' : '123',
+			'tid': 'abc'
+		});
+	});
+
+	// RegExp
+	it("should return the match array ['123', 'abc'] for the match '/project/123/task/abc' based on the regexp pattern '^/project/(.*)/task/(.*)$'", function() {
+		var ms = matchstick('^/project/(.*)/task/(.*)$', 'regexp');
+		ms.match('/project/123/task/abc');
+		assert.deepEqual(ms.matches, ['123', 'abc']);
+	});
+
 });
