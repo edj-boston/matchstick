@@ -5,6 +5,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	this.pattern   = ''; // Original pattern passed as argument
 	this.mode      = ''; // Mode string must be one of validModes array below
 	this.modifiers = null; // Modifier string passed as argument for 'regexp' mode
+	this.matches   = null, // Array of matches for wildcard type, or obj for template/symbolic types
 	this.tokens    = null; // Tokens array for 'template' and 'symbolic' modes
 	this.regexp    = new RegExp(); // The calculated regex object
 
@@ -114,8 +115,74 @@ var Matchstick = function( pattern, mode, modifiers ) {
 
 // Public method to test the regexp against a string and return true/false
 Matchstick.prototype.match = function( str ) {
-	return this.regexp.test(str);
-};
+	this.matches = null;
+	var that = this;
+
+	// Helper function that returns an object of matches
+	var matchesObject = function(str) {
+		var result = that.regexp.exec(str);
+
+		// Populate the matches property if we have a result and return true
+		if( result ) {
+
+			that.tokens.forEach(function(el, i) {
+				that.matches[el] = result[i + 1];
+			}, that);
+
+			return true;
+
+		// Otherwise return false
+		} else {
+			return false;
+		}
+	}
+
+	// Helper function that returns an array of matches
+	var matchesArray = function(str) {
+		var result = that.regexp.exec(str);
+
+		// Populate the matches property if we have a result and return true
+		if( result ) {
+
+			that.matches = result.slice(1, result.length);
+			return true;
+
+		// Otherwise return false
+		} else {
+			return false;
+		}
+	}
+
+	// Handle modes differently
+	switch( this.mode ) {
+
+		case 'wildcard':
+			this.matches = [];
+			return matchesArray(str);
+			break;
+
+		case 'template':
+			this.matches = {};
+			return matchesObject(str);
+			break;
+
+		case 'symbolic':
+			this.matches = {};
+			return matchesObject(str);
+			break;
+
+		case 'regexp':
+			this.matches = [];
+			return matchesArray(str);
+			break;
+
+		default:
+			return this.regexp.test(str);
+			break;
+
+	}
+
+}
 
 
 // Public method to perform string replacement
