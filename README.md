@@ -6,7 +6,9 @@ A NodeJS module that converts string patterns into regular expressions. It can a
 Installation
 ------------
 
-	$ npm install matchstick
+```
+$ npm install matchstick
+```
 
 
 Usage
@@ -14,8 +16,10 @@ Usage
 
 Require matchstick at the top of your script.
 
-	var matchstick = require('matchstick');
- 
+```js
+var matchstick = require('matchstick');
+```
+
 
 ### Arguments
 
@@ -37,35 +41,41 @@ Require matchstick at the top of your script.
 
 Matchstick is a constructor that returns a fresh instance so you don't need the `new` keyword.
 
-	> var ms = matchstick('/project/{pid}/task/{tid}', 'template');
-	> ms
+```js
+> var ms = matchstick('/project/{pid}/task/{tid}', 'template');
+> ms
 
-	{
-		pattern  : '/project/{pid}/task/{tid}',
-		mode     : 'template',
-		tokens   : [
-			'pid',
-			'tid'
-		],
-		regexp  : /^\/project\/(.*)\/task\/(.*)$/,
-		matches : null,
-		match   : function() {},
-		stick : function() {}
-	}
+  {
+  	pattern  : '/project/{pid}/task/{tid}',
+  	mode     : 'template',
+  	tokens   : [
+  		'pid',
+  		'tid'
+  	],
+  	regexp  : /^\/project\/(.*)\/task\/(.*)$/,
+  	matches : null,
+  	match   : function() {},
+  	stick : function() {}
+  }
+```
 
 Set it to a variable and use the match method to return `true` or `false`
 
-	> var ms = matchstick('/path', 'static')
-	> ms.match('/path/')
-	
-	true
+```js
+> var ms = matchstick('/path', 'static')
+> ms.match('/path/')
+
+  true
+```
 
 ...or evaluate it directly.
 
-	> var str = '/path/';
-	> if( matchstick('/path', 'static' ).match(str) ) { 'match!' }
-	
-	'match!'
+```js
+> var str = '/path/';
+> if( matchstick('/path', 'static' ).match(str) ) { 'match!' }
+
+  'match!'
+```
 
 
 Dynamic Properties
@@ -74,11 +84,13 @@ Dynamic Properties
 ### Tokens
 
 Template and symbolic modes populate the `tokens` property with an array representing the token names in the other they appear in the pattern.
-	
-	> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
-	> ms.tokens
-	
-	  ['pid', 'tid']
+
+```js
+> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
+> ms.tokens
+
+  ['pid', 'tid']
+```
 
 
 ### Matches
@@ -87,29 +99,35 @@ The matches property will always contain the lastest results of a `match()` call
 
 __Wildcard__ and __RegExp__ modes populate the `matches` property with an array of strings representing the order in which they are captured.
 
-	> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
-	> ms.match('/project/123/task/abc');
-	> ms.matches
-	
-	  ['123', 'abc']	
+```js
+> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
+> ms.match('/project/123/task/abc');
+> ms.matches
+
+  ['123', 'abc']	
+```
 
 __Template__ and __symbolic__ modes populate the `matches` property with an object with tokens and strings as key/value pairs.
 
-	> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
-	> ms.match('/project/123/task/abc');
-	> ms.matches
+```js
+> var ms = matchstick('/project/{pid}/task/{tid}', 'template')
+> ms.match('/project/123/task/abc');
+> ms.matches
 	
-	  {pid:'123', tid:'abc'}
+  {pid:'123', tid:'abc'}
+```
 
 
 ### RegExp
 
 All patterns populate the `regexp` property which you can access directly if needed.
 
-	> var ms = matchstick('^\/path\/$', 'regexp', 'g')
-	> ms.regexp
-	
-	  /^/path/$/g
+```js
+> var ms = matchstick('^\/path\/$', 'regexp', 'g')
+> ms.regexp
+
+  /^/path/$/g
+```
 
 
 Methods
@@ -119,38 +137,49 @@ Methods
 
 #### Static mode
 
-	> matchstick('/path/', 'static').match'('/PATH/')
-	
-	  true
+```js
+> matchstick('/path/', 'static').match('/PATH/')
+
+  true
+```
 
 #### Wildcard mode
 
-	> matchstick('/path/*/', 'wildcard').match('/path/something/')
-	
-	  true
+```js
+> matchstick('/path/*/', 'wildcard').match('/path/something/')
+
+  true
+```
 
 #### Regexp mode
 
-	> matchstick('^\/path\/$', 'regexp').match('/path/')
-	
-	  true
+```js
+> matchstick('^\/path\/$', 'regexp').match('/path/')
+
+  true
+```
 
 
 ### stick()
 
 #### Template Mode
 
-	> var ms = matchstick('/project/{pid}/task/{tid}', 'pattern');
-	> ms.stick({pid:'123', tid:'abc'});
-	
-	  /project/123/task/abc
+```js
+> var ms = matchstick('/project/{pid}/task/{tid}', 'pattern');
+> ms.stick({pid:'123', tid:'abc'});
+
+  /project/123/task/abc
+```
+
 
 #### Symbolic Mode
 
-	> var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'pattern');
-	> ms.stick({pid:'123', tid:'abc'});
-	
-	  /project/123/task/abc/action/
+```js
+> var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'pattern');
+> ms.stick({pid:'123', tid:'abc'});
+
+  /project/123/task/abc/action/
+```
 
 Note: Unused tokens are removed
 
@@ -160,11 +189,14 @@ Tests
 
 Install the global dependancies with sudo permissions.
 
-	$ sudo npm install -g mocha
-	$ sudo npm install -g should
-
+```
+$ sudo npm install -g mocha
+$ sudo npm install -g should
+```
 
 Run mocha directly to see the test results.
 
-	$ cd matchstick
-	$ mocha
+```
+$ cd matchstick
+$ mocha
+```
