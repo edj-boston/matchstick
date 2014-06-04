@@ -6,7 +6,7 @@ A NodeJS module that converts string patterns into regular expressions. It can a
 Installation
 ------------
 
-```
+```sh
 $ npm install matchstick
 ```
 
@@ -189,14 +189,14 @@ Tests
 
 Install the global dependancies with sudo permissions.
 
-```
+```sh
 $ sudo npm install -g mocha
 $ sudo npm install -g should
 ```
 
 Run mocha directly to see the test results.
 
-```
+```sh
 $ cd matchstick
 $ mocha
 ```
