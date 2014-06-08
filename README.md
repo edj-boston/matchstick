@@ -6,6 +6,8 @@ A NodeJS module that converts string patterns into regular expressions. It can a
 Installation
 ------------
 
+Install using NPM. You may require `sudo` depending on your local configuration.
+
 ```sh
 $ npm install matchstick
 ```
