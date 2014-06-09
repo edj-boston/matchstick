@@ -1,4 +1,6 @@
-# Matchstick [![Build Status](https://travis-ci.org/edj-boston/matchstick.svg?branch=master)](https://travis-ci.org/edj-boston/matchstick)
+# Matchstick
+
+[![Build Status](https://travis-ci.org/edj-boston/matchstick.svg?branch=master)](https://travis-ci.org/edj-boston/matchstick)
 
 A NodeJS module that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simple template systems.
 
