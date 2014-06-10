@@ -137,7 +137,7 @@ All patterns populate the `regexp` property which you can access directly if nee
 Methods
 -------
 
-### match()
+### Match
 
 #### Static mode
 
@@ -164,7 +164,7 @@ Methods
 ```
 
 
-### stick()
+### Stick
 
 #### Template Mode
 
