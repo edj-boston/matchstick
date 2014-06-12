@@ -2,17 +2,19 @@
 
 [![Build Status](https://api.travis-ci.org/edj-boston/matchstick.svg?branch=master)](https://travis-ci.org/edj-boston/matchstick)
 
-A NodeJS module that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simple template systems.
+A [NodeJS module](https://www.npmjs.org/package/matchstick) that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simple template systems.
 
 
 Installation
 ------------
 
-Install using NPM. You may require `sudo` depending on your local configuration.
+Install using NPM.
 
 ```sh
 $ npm install matchstick
 ```
+
+You may require `sudo` depending on your local configuration.
 
 
 Usage
