@@ -35,14 +35,15 @@ var Matchstick = function( pattern, mode, modifiers ) {
 			'i', // Case insensitive
 			'g', // Global match
 			'm',  // Multiline matching
-            'd' // Use dotall for multiline regexps
+            'd'// Use dotall for multiline regexps
+
 		];
 		for(i in modifiers.split('')) {
 			var mod = modifiers[i];
 			if( validModifiers.indexOf(mod) >= 0 ) {
 				validModifiers.splice(validModifiers.indexOf(mod), 1);
                 if (mod == 'd')
-                    this.match_all = '([\\s\\S]*?)';
+                    this.match_all = '([\\s\\S]+)';
 
 			} else {
 				throw new Error("[Matchstick] Invalid modifier character '" + mod + "'");
@@ -109,7 +110,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 
 	// Helper function to escape a regexp string
 	function escapeRegExp(str, asterisks) {
-		var regexp = (asterisks) ? /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g : /[\-\[\]\/\{\}\(\)\+\?\.\\\^\$\|]/g;
+		var regexp = (asterisks) ? /[|\\{}()[\]^$+?.]/g : /[|\\{}()[\]^$+*?.]/g;
 		return str.replace(regexp, "\\$&");
 	}
 
