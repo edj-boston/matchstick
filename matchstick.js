@@ -79,7 +79,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 
 		case 'template': // A '{token}' string matches any character(s)
 			this.tokens = [];
-			var buff = escapeRegExp(pattern, false);
+			var buff = escapeRegExp(pattern);
 			var arr = pattern.match(new RegExp('({[^/.]*})', 'g'));
 			for(i in arr) {
 				var token = arr[i].substring(1, arr[i].length-1); // Remove leading/trailing curly brace char
