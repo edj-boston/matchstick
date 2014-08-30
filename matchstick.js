@@ -110,7 +110,6 @@ var Matchstick = function( pattern, mode, modifiers ) {
 
 	// Helper function to escape a regexp string
 	function escapeRegExp(str, asterisks) {
-        // /[|\\{}()[\]^$+*?.]/g
 		var regexp = (asterisks) ? /[|\\/{}()[\]^$+*?.]/g : /[|\\/{}()[\]^$+?.]/g;
 		return str.replace(regexp, "\\$&");
 	}
