@@ -8,6 +8,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 	this.matches   = null, // Array of matches for wildcard type, or obj for template/symbolic types
 	this.tokens    = null; // Tokens array for 'template' and 'symbolic' modes
 	this.regexp    = new RegExp(); // The calculated regex object
+    this.match_all  = '(.*)'; // Match tokens by this regex
 
 	/* *
 	 * Validation
@@ -33,16 +34,21 @@ var Matchstick = function( pattern, mode, modifiers ) {
 		var validModifiers = [
 			'i', // Case insensitive
 			'g', // Global match
-			'm'  // Multiline matching
+			'm',  // Multiline matching
+            'd' // Use dotall for multiline regexps
 		];
 		for(i in modifiers.split('')) {
 			var mod = modifiers[i];
 			if( validModifiers.indexOf(mod) >= 0 ) {
 				validModifiers.splice(validModifiers.indexOf(mod), 1);
+                if (mod == 'd')
+                    this.match_all = '([\\s\\S]*?)';
+
 			} else {
 				throw new Error("[Matchstick] Invalid modifier character '" + mod + "'");
 			}
 		}
+        modifiers = modifiers.replace('d', ''); // remove d flag
 		this.modifiers = modifiers;
 	}
 
@@ -77,7 +83,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 			for(i in arr) {
 				var token = arr[i].substring(1, arr[i].length-1); // Remove leading/trailing curly brace char
 				this.tokens.push(token);
-				buff = buff.replace(new RegExp('\\\\{' + token + '\\\\}', 'g'), '(.*)'); // Replace tokens with catch-alls
+				buff = buff.replace(new RegExp('\\\\{' + token + '\\\\}', 'g'), this.match_all); // Replace tokens with catch-alls
 			}
 			this.regexp = new RegExp('^' + buff + '$', modifiers);
 			break;
@@ -89,7 +95,7 @@ var Matchstick = function( pattern, mode, modifiers ) {
 			for(i in arr) {
 				var token = arr[i].substring(1, arr[i].length); // Remove leading/trailing curly brace char
 				this.tokens.push(token);
-				buff = buff.replace(new RegExp(':' + token, 'g'), '(.*)'); // Replace tokens with catch-alls
+				buff = buff.replace(new RegExp(':' + token, 'g'), this.match_all); // Replace tokens with catch-alls
 			}
 			this.regexp = new RegExp('^' + buff + '$', modifiers);
 			break;
