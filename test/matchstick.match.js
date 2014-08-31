@@ -12,7 +12,7 @@ describe('matchstick.match(str)', function() {
 	 */
 
 	// Vanilla
-	it("should return false because '/path' strictly matches '/path'", function() {
+	it("should return false because '/path' does not strictly match '/path/'", function() {
 		assert.equal(matchstick('/path', 'strict').match('/path/'), false);
 	});
 
