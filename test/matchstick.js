@@ -129,4 +129,14 @@ describe('matchstick(pattern, mode, modifiers)', function() {
 		assert.deepEqual(ms.matches, ['123', 'abc']);
 	});
 
+    // Multiline
+    it("should return the match object {'pid': '1\\n\\t\\n23', 'tid': 't\\nest'} for the match '/1\\n\\t\\n23/task: t\\nest' based on the template pattern '/{pid}/task: {tid}'", function() {
+        var ms = matchstick('/{pid}/task: {tid}', 'template', 'd');
+        ms.match('/1\n\t\n23/task: t\nest');
+        assert.deepEqual(ms.matches, {
+            'pid' : '1\n\t\n23',
+            'tid': 't\nest'
+        });
+    });
+
 });
