@@ -1,4 +1,4 @@
-Matchstick [![Build Status](https://api.travis-ci.org/edj-boston/matchstick.svg?branch=master)](https://travis-ci.org/edj-boston/matchstick) [![Dependency Status](https://david-dm.org/edj-boston/matchstick.svg)](https://david-dm.org/edj-boston/matchstick)
+Matchstick [![Build Status](https://api.travis-ci.org/edj-boston/matchstick.svg?branch=master)](https://travis-ci.org/edj-boston/matchstick) [![Dependency Status](https://david-dm.org/edj-boston/matchstick.svg)](https://david-dm.org/edj-boston/matchstick) [![devDependency Status](https://david-dm.org/edj-boston/matchstick/dev-status.svg)](https://david-dm.org/edj-boston/matchstick#info=devDependencies)
 ==========
 
 A [NodeJS module](https://www.npmjs.org/package/matchstick) that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simple template systems.
