@@ -2,9 +2,9 @@
   "name": "matchstick",
   "version": "1.0.0",
   "description": "A NodeJS module that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simlple template systems.",
-  "main": "matchstick.js",
+  "main": "lib/Matchstick.js",
   "scripts": {
-    "test": "mocha"
+    "test": "gulp coveralls"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,10 @@
   },
   "homepage": "https://matchstickjs.com",
   "devDependencies": {
-    "mocha": "^2.3.4",
-    "should": "^7.1.1"
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-eslint": "^1.1.1",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.2.0"
   }
 }

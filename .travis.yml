@@ -1,8 +1,12 @@
+sudo: false
 language: node_js
 node_js:
-  - "4.2"
-  - "4.1"
-  - "4.0"
-  - "0.12"
-  - "0.11"
-  - "0.10"
+- '4.2'
+- '4.1'
+- '4.0'
+- '0.12'
+- '0.11'
+- '0.10'
+env:
+  global:
+  - secure: khBuRE22CXb/ZbdFwW79MZs2U6XhsxWiFi/CtcMDcwovA9rvOmk/H7VDtQnAe+LAeAt0RK3Q9Dkbqlx1w0zx4fY4ZkvGL7t/exG5gwnnyVEAFvGO4O3Wp5GouQkpPNyofzDfvwfoTVvTRM87p0vDAsljgP3UAGHibQ7cnuMqkwE=
