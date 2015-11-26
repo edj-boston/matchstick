@@ -20,7 +20,7 @@ gulp.task('test', ['cover'], function () {
         .pipe(istanbul.writeReports())
         .pipe(istanbul.enforceThresholds({
             thresholds : {
-                global : 8
+                global : 80
             }
         }));
 });
