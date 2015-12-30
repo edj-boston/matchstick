@@ -1,56 +1,56 @@
 var assert = require('assert'),
-	should = require('should'),
-	matchstick = require('../lib/Matchstick.js');
+    should = require('should'),
+    matchstick = require('../lib/Matchstick.js');
 
 
 describe('matchstick.stick(obj)', function() {
 
-	/* *
-	 * Template
-	 */
+    /* *
+     * Template
+     */
 
-	// Simple replacement
-	it("should return '/project/123/task/abc' given the pattern '/project/{pid}/task/{tid}' and {pid:'123', tid:'abc'} data", function() {
-		var ms = matchstick('/project/{pid}/task/{tid}', 'template');
-		var obj = {
-			pid : '123',
-			tid : 'abc'
-		};
-		assert.equal(ms.stick(obj), '/project/123/task/abc');
-	});
+    // Simple replacement
+    it("should return '/project/123/task/abc' given the pattern '/project/{pid}/task/{tid}' and {pid:'123', tid:'abc'} data", function() {
+        var ms = matchstick('/project/{pid}/task/{tid}', 'template');
+        var obj = {
+            pid : '123',
+            tid : 'abc'
+        };
+        assert.equal(ms.stick(obj), '/project/123/task/abc');
+    });
 
-	// Unused tokens
-	it("should return '/project/123/task/abc/action/' given the pattern '/project/{pid}/task/{tid}/action/{aid}' and {pid:'123', tid:'abc'} data", function() {
-		var ms = matchstick('/project/{pid}/task/{tid}/action/{aid}', 'template');
-		var obj = {
-			pid : '123',
-			tid : 'abc'
-		};
-		assert.equal(ms.stick(obj), '/project/123/task/abc/action/');
-	});
+    // Unused tokens
+    it("should return '/project/123/task/abc/action/' given the pattern '/project/{pid}/task/{tid}/action/{aid}' and {pid:'123', tid:'abc'} data", function() {
+        var ms = matchstick('/project/{pid}/task/{tid}/action/{aid}', 'template');
+        var obj = {
+            pid : '123',
+            tid : 'abc'
+        };
+        assert.equal(ms.stick(obj), '/project/123/task/abc/action/');
+    });
 
-	/* *
-	 * Colon
-	 */
+    /* *
+     * Colon
+     */
 
-	// Simple replacement
-	it("should return '/project/123/task/abc' given the pattern '/project/:pid/task/:tid' and {pid:'123', tid:'abc'} data", function() {
-		var ms = matchstick('/project/:pid/task/:tid', 'symbolic');
-		var obj = {
-			pid : '123',
-			tid : 'abc'
-		};
-		assert.equal(ms.stick(obj), '/project/123/task/abc');
-	});
+    // Simple replacement
+    it("should return '/project/123/task/abc' given the pattern '/project/:pid/task/:tid' and {pid:'123', tid:'abc'} data", function() {
+        var ms = matchstick('/project/:pid/task/:tid', 'symbolic');
+        var obj = {
+            pid : '123',
+            tid : 'abc'
+        };
+        assert.equal(ms.stick(obj), '/project/123/task/abc');
+    });
 
-	// Unused tokens
-	it("should return '/project/123/task/abc/action/' given the pattern '/project/:pid/task/:tid/action/:aid' and {pid:'123', tid:'abc'} data", function() {
-		var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'symbolic');
-		var obj = {
-			pid : '123',
-			tid : 'abc'
-		};
-		assert.equal(ms.stick(obj), '/project/123/task/abc/action/');
-	});
+    // Unused tokens
+    it("should return '/project/123/task/abc/action/' given the pattern '/project/:pid/task/:tid/action/:aid' and {pid:'123', tid:'abc'} data", function() {
+        var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'symbolic');
+        var obj = {
+            pid : '123',
+            tid : 'abc'
+        };
+        assert.equal(ms.stick(obj), '/project/123/task/abc/action/');
+    });
 
 });

@@ -36,14 +36,14 @@ gulp.task('coveralls', ['test'], function () {
 // Lint as JS files (including this one)
 gulp.task('lint', ['test'], function () {
     return gulp.src([
-            'lib/*.js',
-            'test/*.js',
-            'gulpfile.js',
-            '!node_modules/**'
-        ])
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
+        'lib/*.js',
+        'test/*.js',
+        'gulpfile.js',
+        '!node_modules/**'
+    ])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 });
 
 
