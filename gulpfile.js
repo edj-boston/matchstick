@@ -1,8 +1,8 @@
-var gulp = require('gulp'),
-    istanbul = require('gulp-istanbul'),
-    mocha = require('gulp-mocha'),
+var gulp      = require('gulp'),
+    istanbul  = require('gulp-istanbul'),
+    mocha     = require('gulp-mocha'),
     coveralls = require('gulp-coveralls'),
-    eslint = require('gulp-eslint');
+    eslint    = require('gulp-eslint');
 
 
 // instrument the code
