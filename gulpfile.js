@@ -6,8 +6,8 @@ var gulp = require('gulp'),
 
 
 // instrument the code
-gulp.task('cover', ['lint'], function () {
-    return gulp.src(['lib/*.js'])
+gulp.task('cover', function () {
+    return gulp.src('lib/*.js')
         .pipe(istanbul())
         .pipe(istanbul.hookRequire());
 });
@@ -15,7 +15,7 @@ gulp.task('cover', ['lint'], function () {
 
 // Run tests and product coverage
 gulp.task('test', ['cover'], function () {
-    return gulp.src(['test/*.js'])
+    return gulp.src('test/*.js')
         .pipe(mocha())
         .pipe(istanbul.writeReports())
         .pipe(istanbul.enforceThresholds({
@@ -34,14 +34,23 @@ gulp.task('coveralls', ['test'], function () {
 
 
 // Lint as JS files (including this one)
-gulp.task('lint', function () {
+gulp.task('lint', ['test'], function () {
     return gulp.src([
-            '*.js',
             'lib/*.js',
             'test/*.js',
+            'gulpfile.js',
             '!node_modules/**'
         ])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
+});
+
+
+// Task for local development
+gulp.task('default', ['lint'], function() {
+    gulp.watch([
+        'lib/*',
+        'test/*'
+    ], ['lint']);
 });
