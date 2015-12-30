@@ -33,7 +33,7 @@
     "gulp-eslint": "^1.1.1",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
-    "should": "^7.1.1"
+    "should": "^8.0.2"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
