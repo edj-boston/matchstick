@@ -1,6 +1,6 @@
 var assert = require('assert'),
     should = require('should'),
-    matchstick = require('../lib/Matchstick.js');
+    matchstick = require('../lib/matchstick.js');
 
 
 describe('matchstick.match(str)', function() {

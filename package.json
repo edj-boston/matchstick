@@ -2,7 +2,7 @@
   "name": "matchstick",
   "version": "1.0.1",
   "description": "A NodeJS module that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simlple template systems.",
-  "main": "lib/Matchstick.js",
+  "main": "lib/matchstick.js",
   "scripts": {
     "test": "gulp coveralls"
   },
