@@ -1,10 +1,8 @@
-// External dependancies
 var assert = require('assert'),
 	should = require('should'),
 	matchstick = require('../lib/Matchstick.js');
 
 
-// Test the constructor
 describe('matchstick(pattern, mode, modifiers)', function() {
 
 	/* *
