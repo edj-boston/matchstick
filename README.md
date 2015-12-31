@@ -191,19 +191,21 @@ Methods
 Note: Unused tokens are removed
 
 
-Tests
------
+Development
+-----------
 
-Install the global dependancies with sudo permissions.
-
-```sh
-$ sudo npm install -g mocha
-$ sudo npm install -g should
-```
-
-Run mocha directly to see the test results.
+Clone the [github repo](https://github.com/edj-boston/matchstick), `cd` to the directory, install the dependencies with NPM, and run `gulp`.
 
 ```sh
 $ cd matchstick
-$ mocha
+$ npm install
+$ gulp
 ```
+
+Gulp will watch the `lib` and `test` directories and re-run the tests for you. gulp will also lint the files and report test coverage.
+
+If you submit a pull request, please follow these guidelines:
+
+1. Use separate PR's for individual features or bugs
+2. Keep test coverage at 100%
+3. Update the documentation in this README
