@@ -16,7 +16,9 @@ gulp.task('cover', function () {
 // Run tests and product coverage
 gulp.task('test', ['cover'], function () {
     return gulp.src('test/*.js')
-        .pipe(mocha())
+        .pipe(mocha({
+            require : ['should']
+        }))
         .pipe(istanbul.writeReports())
         .pipe(istanbul.enforceThresholds({
             thresholds : {

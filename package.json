@@ -57,7 +57,7 @@
         2,
         "multi"
       ],
-      "no-unused-vars": 0,
+      "no-unused-vars": 2,
       "comma-dangle": 2,
       "quotes": 0,
       "indent": 2
