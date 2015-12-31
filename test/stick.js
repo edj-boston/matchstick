@@ -39,4 +39,22 @@ describe('#stick()', function() {
             .should.equal('/project/123/task/abc/action/');
     });
 
+    it('should throw an error for trying to perform replacement on a static pattern', function() {
+        (function() {
+            ms('/project/', 'static').stick({
+                pid : '123',
+                tid : 'abc'
+            });
+        }).should.throw("[Matchstick] Cannot call replace method on 'static' type");
+    });
+
+    it('should throw an error for trying to perform replacement on a static pattern', function() {
+        (function() {
+            ms('/project/', 'strict').stick({
+                pid : '123',
+                tid : 'abc'
+            });
+        }).should.throw("[Matchstick] Cannot call replace method on 'strict' type");
+    });
+
 });

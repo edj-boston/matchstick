@@ -39,4 +39,40 @@ describe('#match()', function() {
             .should.be.true;
     });
 
+    it('should return false for a non-match on a symbolic type', function() {
+        ms('/project/:pid/task/:tid', 'symbolic')
+            .match('/foo')
+            .should.be.false;
+    });
+
+    it('should return false for a non-match on a template type', function() {
+        ms('/project/{pid}/task/{tid}', 'template')
+            .match('/foo')
+            .should.be.false;
+    });
+
+    it('should return false for a non-match on a strict type', function() {
+        ms('/project/', 'strict')
+            .match('/foo')
+            .should.be.false;
+    });
+
+    it('should return false for a non-match on a static type', function() {
+        ms('/project', 'static')
+            .match('/foo')
+            .should.be.false;
+    });
+
+    it('should return false for a non-match on a wildcard type', function() {
+        ms('/project/*', 'wildcard')
+            .match('/foo')
+            .should.be.false;
+    });
+
+    it('should return flase for a non-match on a regexp type', function() {
+        ms('^\/path\/$', 'regexp')
+            .match('/foo')
+            .should.be.false;
+    });
+
 });
