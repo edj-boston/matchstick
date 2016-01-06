@@ -59,7 +59,7 @@ gulp.task('deps', function() {
 
 // Task for local development
 gulp.task('default', ['deps', 'lint'], function() {
-    gulp.watch([
+    return gulp.watch([
         'lib/*',
         'test/*'
     ], ['lint']);
