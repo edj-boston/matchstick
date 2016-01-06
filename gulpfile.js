@@ -1,11 +1,11 @@
-var gulp      = require('gulp'),
+var coveralls = require('gulp-coveralls'),
+    eslint    = require('gulp-eslint'),
+    gulp      = require('gulp'),
     istanbul  = require('gulp-istanbul'),
-    mocha     = require('gulp-mocha'),
-    coveralls = require('gulp-coveralls'),
-    eslint    = require('gulp-eslint');
+    mocha     = require('gulp-mocha');
 
 
-// instrument the code
+// Instrument the code
 gulp.task('cover', function () {
     return gulp.src('lib/*.js')
         .pipe(istanbul())
