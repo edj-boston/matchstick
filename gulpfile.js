@@ -1,4 +1,5 @@
 var coveralls = require('gulp-coveralls'),
+    david     = require('gulp-david'),
     eslint    = require('gulp-eslint'),
     gulp      = require('gulp'),
     istanbul  = require('gulp-istanbul'),
@@ -49,8 +50,17 @@ gulp.task('lint', ['test'], function () {
 });
 
 
+// Check deps with David service
+gulp.task('deps', function() {
+    return gulp.src('package.json')
+        .pipe(david({ update: true }))
+        .pipe(david.reporter)
+        .pipe(gulp.dest('.'));
+});
+
+
 // Task for local development
-gulp.task('default', ['lint'], function() {
+gulp.task('default', ['deps', 'lint'], function() {
     gulp.watch([
         'lib/*',
         'test/*'
