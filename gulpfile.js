@@ -22,9 +22,7 @@ gulp.task('test', ['cover'], function () {
         }))
         .pipe(istanbul.writeReports())
         .pipe(istanbul.enforceThresholds({
-            thresholds : {
-                global : 80
-            }
+            thresholds: { global: 100 }
         }));
 });
 
