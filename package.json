@@ -43,12 +43,6 @@
       "es6": true,
       "mocha": true
     },
-    "globals": {
-      "$": true,
-      "window": true,
-      "document": true,
-      "ga": true
-    },
     "rules": {
       "no-mixed-spaces-and-tabs": 2,
       "space-after-keywords": 2,
@@ -60,7 +54,6 @@
       ],
       "no-unused-vars": 2,
       "comma-dangle": 2,
-      "quotes": 0,
       "indent": 2
     }
   }
