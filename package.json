@@ -28,33 +28,13 @@
   },
   "homepage": "https://matchstickjs.com",
   "devDependencies": {
+    "edj-eslint-rules": "^2.0.0",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
     "gulp-david": "^0.4.1",
-    "gulp-eslint": "^1.1.1",
+    "gulp-eslint": "^2.0.0",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
     "should": "^8.0.2"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "node": true,
-      "es6": true,
-      "mocha": true
-    },
-    "rules": {
-      "no-mixed-spaces-and-tabs": 2,
-      "space-after-keywords": 2,
-      "semi": 2,
-      "camelcase": 1,
-      "curly": [
-        2,
-        "multi"
-      ],
-      "no-unused-vars": 2,
-      "comma-dangle": 2,
-      "indent": 2
-    }
   }
 }

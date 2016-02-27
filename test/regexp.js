@@ -1,36 +1,36 @@
-var ms = require('../lib/matchstick.js');
+'use strict';
+
+const ms = require('../lib/matchstick.js');
 
 
-describe('#regexp', function() {
-
-    it('should produce an accurate regexp from a strict string', function() {
+describe('#regexp', () => {
+    it('should produce an accurate regexp from a strict string', () => {
         ms('/path', 'strict').regexp.toString()
             .should.equal(new RegExp('^\\/path$').toString());
     });
 
-    it('should produce an accurate regexp from a static string', function() {
+    it('should produce an accurate regexp from a static string', () => {
         ms('/path', 'static').regexp.toString()
             .should.equal(new RegExp('^\\/path(\/?)$').toString());
     });
 
-    it('should produce an accurate regexp from a wildcard string', function() {
+    it('should produce an accurate regexp from a wildcard string', () => {
         ms('/path/*/', 'wildcard').regexp.toString()
             .should.equal(new RegExp('^\\/path\\/(.*)\\/$').toString());
     });
 
-    it('should produce an accurate regexp from a  string', function() {
+    it('should produce an accurate regexp from a  string', () => {
         ms('/path/{id}', 'template').regexp.toString()
             .should.equal(new RegExp('^\\/path\\/(.*)$').toString());
     });
 
-    it('should produce an accurate regexp from symbols', function() {
+    it('should produce an accurate regexp from symbols', () => {
         ms('/path/:id', 'symbolic').regexp.toString()
             .should.equal(new RegExp('^\\/path\\/(.*)$').toString());
     });
 
-    it('should produce an exact regexp', function() {
+    it('should produce an exact regexp', () => {
         ms('/path', 'regexp').regexp.toString()
             .should.equal(new RegExp('/path').toString());
     });
-
 });
