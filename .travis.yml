@@ -3,6 +3,7 @@ language: node_js
 node_js:
 - '5'
 - '4'
+script: gulp travis
 env:
   global:
   - secure: khBuRE22CXb/ZbdFwW79MZs2U6XhsxWiFi/CtcMDcwovA9rvOmk/H7VDtQnAe+LAeAt0RK3Q9Dkbqlx1w0zx4fY4ZkvGL7t/exG5gwnnyVEAFvGO4O3Wp5GouQkpPNyofzDfvwfoTVvTRM87p0vDAsljgP3UAGHibQ7cnuMqkwE=

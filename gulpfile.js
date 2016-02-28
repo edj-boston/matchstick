@@ -6,7 +6,8 @@ const coveralls = require('gulp-coveralls'),
     gulp        = require('gulp'),
     istanbul    = require('gulp-istanbul'),
     mocha       = require('gulp-mocha'),
-    rules       = require('edj-eslint-rules');
+    rules       = require('edj-eslint-rules'),
+    sequence    = require('gulp-sequence');
 
 
 // Instrument the code
@@ -18,7 +19,7 @@ gulp.task('cover', () => {
 
 
 // Run tests and product coverage
-gulp.task('test', [ 'cover' ], () => {
+gulp.task('test', () => {
     return gulp.src('test/*.js')
         .pipe(mocha({
             require : [ 'should' ]
@@ -33,14 +34,14 @@ gulp.task('test', [ 'cover' ], () => {
 
 
 // Run tests and product coverage
-gulp.task('coveralls', [ 'test' ], () => {
+gulp.task('coveralls', () => {
     return gulp.src('coverage/lcov.info')
         .pipe(coveralls());
 });
 
 
 // Lint as JS files (including this one)
-gulp.task('lint', [ 'test' ], () => {
+gulp.task('lint', () => {
     return gulp.src([
         'lib/*.js',
         'test/*.js',
@@ -64,10 +65,21 @@ gulp.task('deps', () => {
 });
 
 
+// Build macro
+gulp.task('build', done => {
+    sequence('cover', 'test', 'lint')(done);
+});
+
+// Macro for travis
+gulp.task('travis', done => {
+    sequence('build', 'coveralls')(done);
+});
+
+
 // Task for local development
-gulp.task('default', [ 'deps', 'lint' ], () => {
+gulp.task('default', [ 'deps', 'build' ], () => {
     return gulp.watch([
         'lib/*',
         'test/*'
-    ], [ 'lint' ]);
+    ], [ 'build' ]);
 });

@@ -4,7 +4,7 @@
   "description": "A NodeJS module that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simlple template systems.",
   "main": "lib/matchstick.js",
   "scripts": {
-    "test": "gulp coveralls"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -21,13 +21,13 @@
     "url",
     "regexp"
   ],
-  "author": "Eric Johnson",
+  "author": "Eric Johnson <edj.boston@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/edj-boston/matchstick/issues"
   },
   "homepage": "https://matchstickjs.com",
-  "devDependencies": {
+  "dependencies": {
     "edj-eslint-rules": "^2.0.0",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
@@ -35,6 +35,7 @@
     "gulp-eslint": "^2.0.0",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
+    "gulp-sequence": "^0.4.5",
     "should": "^8.0.2"
   }
 }
