@@ -28,7 +28,7 @@
   },
   "homepage": "https://matchstickjs.com",
   "dependencies": {
-    "edj-eslint-rules": "^2.0.0",
+    "edj-eslint-rules": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
     "gulp-david": "^0.4.1",
