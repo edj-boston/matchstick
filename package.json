@@ -31,7 +31,7 @@
     "edj-eslint-rules": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
-    "gulp-david": "^0.4.1",
+    "gulp-david": "^1.0.1",
     "gulp-eslint": "^3.0.1",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
