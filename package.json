@@ -33,7 +33,7 @@
     "gulp-coveralls": "^0.1.4",
     "gulp-david": "^1.0.1",
     "gulp-eslint": "^3.0.1",
-    "gulp-istanbul": "^0.10.3",
+    "gulp-istanbul": "^1.1.2",
     "gulp-mocha": "^2.2.0",
     "gulp-sequence": "^0.4.5",
     "should": "^8.0.2"
