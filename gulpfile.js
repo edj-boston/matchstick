@@ -49,8 +49,9 @@ gulp.task('lint', () => {
         '!node_modules/**'
     ])
     .pipe(eslint({
-        extends : 'eslint:recommended',
-        env     : { node : true, es6 : true, mocha : true },
+        extends       : 'eslint:recommended',
+        env           : [ 'node', 'mocha' ],
+        parserOptions : { 'ecmaVersion' : 6 },
         rules
     }))
     .pipe(eslint.format())
