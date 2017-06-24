@@ -1,8 +1,9 @@
 'use strict';
 
-const g   = require('gulp-load-plugins')(),
-    gulp  = require('gulp'),
-    rules = require('@edjboston/eslint-rules');
+const depcheck = require('depcheck'),
+    g          = require('gulp-load-plugins')(),
+    gulp       = require('gulp'),
+    rules      = require('@edjboston/eslint-rules');
 
 
 // Instrument the code
@@ -56,11 +57,17 @@ gulp.task('lint', () => {
 
 
 // Check deps with David service
-gulp.task('deps', () => {
+gulp.task('david', () => {
     return gulp.src('package.json')
         .pipe(g.david());
 });
 
+// Check for unused deps
+gulp.task('depcheck', g.depcheck({
+    specials : [
+        depcheck.special['gulp-load-plugins']
+    ]
+}));
 
 // Build macro
 gulp.task('build', done => {
@@ -74,7 +81,7 @@ gulp.task('travis', done => {
 
 
 // Task for local development
-gulp.task('default', [ 'deps', 'build' ], () => {
+gulp.task('default', [ 'david', 'depcheck', 'build' ], () => {
     return gulp.watch([
         'lib/*',
         'test/*'
