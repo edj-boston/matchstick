@@ -1,6 +1,6 @@
 Matchstick
 ==========
-
+[![npm](https://img.shields.io/npm/v/matchstick.svg)](https://www.npmjs.com/package/matchstick)
 [![Build Status](https://api.travis-ci.org/edj-boston/matchstick.svg?branch=master)](https://travis-ci.org/edj-boston/matchstick) [![Coverage Status](https://coveralls.io/repos/edj-boston/matchstick/badge.svg?branch=master&service=github)](https://coveralls.io/github/edj-boston/matchstick?branch=master) [![Dependency Status](https://david-dm.org/edj-boston/matchstick.svg)](https://david-dm.org/edj-boston/matchstick) [![devDependency Status](https://david-dm.org/edj-boston/matchstick/dev-status.svg)](https://david-dm.org/edj-boston/matchstick#info=devDependencies)
 
 A [NodeJS module](https://www.npmjs.org/package/matchstick) that converts string patterns into regular expressions. It can also tokenize and perform string replacement. It's useful for route handling or simple template systems.
@@ -62,7 +62,7 @@ Matchstick is a constructor that returns a fresh instance so you don't need the 
   	regexp  : /^\/project\/(.*)\/task\/(.*)$/,
   	matches : null,
   	match   : function() {},
-  	stick : function() {}
+  	stick   : function() {}
   }
 ```
 
@@ -73,15 +73,6 @@ Set it to a variable and use the match method to return `true` or `false`
 > ms.match('/path/')
 
   true
-```
-
-...or evaluate it directly.
-
-```js
-> var str = '/path/';
-> if( matchstick('/path', 'static' ).match(str) ) { 'match!' }
-
-  'match!'
 ```
 
 
@@ -111,7 +102,7 @@ __Wildcard__ and __RegExp__ modes populate the `matches` property with an array 
 > ms.match('/project/123/task/abc');
 > ms.matches
 
-  ['123', 'abc']	
+  ['123', 'abc']
 ```
 
 __Template__ and __symbolic__ modes populate the `matches` property with an object with tokens and strings as key/value pairs.
@@ -120,7 +111,7 @@ __Template__ and __symbolic__ modes populate the `matches` property with an obje
 > var ms = matchstick('/project/{pid}/task/{tid}', 'template')
 > ms.match('/project/123/task/abc');
 > ms.matches
-	
+
   {pid:'123', tid:'abc'}
 ```
 
