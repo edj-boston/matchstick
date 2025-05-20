@@ -75,4 +75,26 @@ describe('#match()', () => {
             .match('/foo')
             .should.be.false;
     });
+
+    describe('with regex special characters in literal parts', () => {
+        it('should handle template mode with regex choices and groups', () => {
+            const pattern = ms('/api/items/{id}(.json|.xml)', 'template');
+            pattern.match('/api/items/123.json').should.be.true;
+            pattern.match('/api/items/abc.xml').should.be.true;
+            pattern.match('/api/items/xyz.yaml').should.be.false;
+            pattern.match('/api/items/123').should.be.false;
+        });
+
+        it('should handle symbolic mode with non-capturing group', () => {
+            const pattern = ms('/user/:username/file(?:s?)', 'symbolic');
+            pattern.match('/user/john/file').should.be.true;
+            pattern.match('/user/jane/files').should.be.true;
+            pattern.match('/user/doe/fileS').should.be.false; // Case-sensitive by default
+        });
+
+        it('should handle symbolic mode with non-capturing group and case-insensitivity', () => {
+            const pattern = ms('/user/:username/file(?:s?)', 'symbolic', 'i');
+            pattern.match('/user/doe/fileS').should.be.true; // Now true with 'i'
+        });
+    });
 });
