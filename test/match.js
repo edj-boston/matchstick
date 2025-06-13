@@ -16,7 +16,7 @@ describe('#match()', () => {
             .should.be.true;
     });
 
-    it('should perform accurate case-insensative static matches', () => {
+    it('should perform accurate case-insensitive static matches', () => {
         ms('/path', 'static', 'i')
             .match('/PATH')
             .should.be.true;
