@@ -14,7 +14,7 @@ describe('#tokens', () => {
             .should.eql([ 'pid', 'tid' ]);
     });
 
-    it('should properly tokenize consequitive symbols', () => {
+    it('should properly tokenize consecutive symbols', () => {
         ms('/:project:id', 'symbolic').tokens
             .should.eql([ 'project', 'id' ]);
     });
