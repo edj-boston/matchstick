@@ -19,7 +19,7 @@ describe('#regexp', () => {
             .should.equal(new RegExp('^\\/path\\/(.*)\\/$').toString());
     });
 
-    it('should produce an accurate regexp from a template string', () => {
+    it('should produce an accurate regexp from a  string', () => {
         ms('/path/{id}', 'template').regexp.toString()
             .should.equal(new RegExp('^\\/path\\/(.*)$').toString());
     });

@@ -16,7 +16,7 @@ describe('#match()', () => {
             .should.be.true;
     });
 
-    it('should perform accurate case-insensitive static matches', () => {
+    it('should perform accurate case-insensative static matches', () => {
         ms('/path', 'static', 'i')
             .match('/PATH')
             .should.be.true;
@@ -70,7 +70,7 @@ describe('#match()', () => {
             .should.be.false;
     });
 
-    it('should return false for a non-match on a regexp type', () => {
+    it('should return flase for a non-match on a regexp type', () => {
         ms('^\/path\/$', 'regexp')
             .match('/foo')
             .should.be.false;
