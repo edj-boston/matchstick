@@ -81,7 +81,7 @@ Dynamic Properties
 
 ### Tokens
 
-Template and symbolic modes populate the `tokens` property with an array representing the token names in the other they appear in the pattern.
+Template and symbolic modes populate the `tokens` property with an array representing the token names in the order they appear in the pattern.
 
 ```js
 > var ms = matchstick('/project/{pid}/task/{tid}', 'template')
@@ -93,7 +93,7 @@ Template and symbolic modes populate the `tokens` property with an array represe
 
 ### Matches
 
-The matches property will always contain the lastest results of a `match()` call.
+The matches property will always contain the latest results of a `match()` call.
 
 __Wildcard__ and __RegExp__ modes populate the `matches` property with an array of strings representing the order in which they are captured.
 
@@ -163,7 +163,7 @@ Methods
 #### Template Mode
 
 ```js
-> var ms = matchstick('/project/{pid}/task/{tid}', 'pattern');
+> var ms = matchstick('/project/{pid}/task/{tid}', 'template');
 > ms.stick({pid:'123', tid:'abc'});
 
   /project/123/task/abc
@@ -173,7 +173,7 @@ Methods
 #### Symbolic Mode
 
 ```js
-> var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'pattern');
+> var ms = matchstick('/project/:pid/task/:tid/action/:aid', 'symbolic');
 > ms.stick({pid:'123', tid:'abc'});
 
   /project/123/task/abc/action/
