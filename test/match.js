@@ -70,7 +70,7 @@ describe('#match()', () => {
             .should.be.false;
     });
 
-    it('should return flase for a non-match on a regexp type', () => {
+    it('should return false for a non-match on a regexp type', () => {
         ms('^\/path\/$', 'regexp')
             .match('/foo')
             .should.be.false;
